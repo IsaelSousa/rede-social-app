@@ -23,3 +23,19 @@ export const registerUser = (data: string) => {
         .catch((err) => subscriber.error(err));
     });
 }
+
+export const loginUser = (data: string) => {
+    return new Observable((subscriber) => {
+        const axiosInstance = createAxiosInstance();
+        axiosInstance.post("/Auth/Login", data, {
+            headers: {
+                'Content-Type': 'text/plain'
+            }
+        })
+        .then((resp) => {
+            subscriber.next(resp.data);
+            subscriber.complete();
+        })
+        .catch((err) => subscriber.error(err));
+    });
+}
