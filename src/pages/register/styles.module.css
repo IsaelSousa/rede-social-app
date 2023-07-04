@@ -1,0 +1,67 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    font-size: 32pt;
+    font-family: 'Kanit';
+}
+
+.label {
+    font-size: 16pt;
+    font-family: 'Kanit';
+}
+
+.input {
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin: 0.5rem;
+    text-align: center;
+}
+
+.button {
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    padding-left: 10%;
+    padding-right: 10%;
+
+    font-family: 'Kanit';
+    font-weight: 500;
+    background-color: #919191;
+    color: #FFFFFF;
+    border: none;
+    margin: 0.4rem;
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: #696969;
+}
+
+.directionColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.directionCenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem;
+
+}
+
+.directionRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
