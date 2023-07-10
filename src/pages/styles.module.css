@@ -1,13 +1,27 @@
 .main {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-around;
+    padding-top: 4rem;
+
+    width: 100vw;
 }
 
 .title {
     font-size: 32pt;
     font-family: 'Kanit';
+}
+
+.savechanges {
+    font-size: 12pt;
+    font-family: 'Kanit';
+}
+
+.savechangesinput {
+    margin-left: 10px;
+}
+
+.savechangesinput:hover {
+    cursor: pointer;
 }
 
 .label {
@@ -55,15 +69,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0.8rem;
-
 }
 
 .directionRow {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
 }
 
 .buttonContainer {
@@ -71,4 +81,10 @@
     justify-content: center;
     flex-direction: column;
     width: 350px;
+}
+
+.mainDivisor {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

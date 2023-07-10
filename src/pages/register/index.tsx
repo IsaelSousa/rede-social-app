@@ -94,24 +94,24 @@ export default function Register() {
             <div className={styles.directionColumn}>
                 <div className={styles.directionRow}>
                     <div className={styles.directionCenter}>
-                        <label className={styles.label} htmlFor="user">Usuário</label>
+                        <label className={styles.label} htmlFor="user">User</label>
                         <input id="user" type="text" placeholder="Informe seu usuário" name="userName" value={user.userName} onChange={(e) => handleInputChange(e)} className={styles.input} />
                     </div>
 
                     <div className={styles.directionCenter}>
-                        <label className={styles.label} htmlFor="password">Senha</label>
+                        <label className={styles.label} htmlFor="password">Password</label>
                         <input id="password" type="password" placeholder="Digite sua senha" name="password" value={user.password} onChange={(e) => handleInputChange(e)} className={styles.input} />
                     </div>
                 </div>
 
                 <div className={styles.directionRow}>
                     <div className={styles.directionCenter}>
-                        <label className={styles.label} htmlFor="firstname">Nome</label>
+                        <label className={styles.label} htmlFor="firstname">First Name</label>
                         <input id="firstname" type="text" placeholder="Digite seu nome" name="firstName" value={user.firstName} onChange={(e) => handleInputChange(e)} className={styles.input} />
                     </div>
 
                     <div className={styles.directionCenter}>
-                        <label className={styles.label} htmlFor="lastname">Sobrenome</label>
+                        <label className={styles.label} htmlFor="lastname">Last Name</label>
                         <input id="lastname" type="text" placeholder="Digite seu sobrenome" name="lastName" value={user.lastName} onChange={(e) => handleInputChange(e)} className={styles.input} />
                     </div>
                 </div>
@@ -123,14 +123,14 @@ export default function Register() {
                     </div>
 
                     <div className={styles.directionCenter}>
-                        <label className={styles.label} htmlFor="cellnumber">Número Telefone</label>
+                        <label className={styles.label} htmlFor="cellnumber">CellPhone Number</label>
                         <input id="cellnumber" type="tel" placeholder="Digite seu número" name="phoneNumber" value={user.phoneNumber} onChange={(e) => handleInputChange(e)} className={styles.input} />
                     </div>
                 </div>
             </div>
 
-            <button onClick={() => handleRegister()} className={styles.button}>Concluir Registro</button>
-            <button onClick={handleCancel} className={styles.button}>Cancelar</button>
+            <button onClick={() => handleRegister()} className={styles.button}>Register</button>
+            <button onClick={handleCancel} className={styles.button}>Cancel</button>
         </main>
     );
 }
