@@ -9,3 +9,7 @@ export type User = {
     phoneNumberConfirmed: boolean;
     twoFactorEnabled: boolean;
 }
+
+export type ActualUser = {
+    userName: string;
+}

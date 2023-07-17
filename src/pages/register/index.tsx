@@ -59,7 +59,7 @@ export default function Register() {
                                 progress: undefined,
                                 theme: "light",
                             });
-                        } else {
+                        } else {                           
                             toast.success('Registered with sucess!', {
                                 position: "top-right",
                                 autoClose: 5000,

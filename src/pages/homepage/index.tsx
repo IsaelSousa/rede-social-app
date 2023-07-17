@@ -2,7 +2,7 @@ import { HeadLinksComponent } from '@/components/HeadLinksComponent';
 import styles from './styles.module.css';
 import { useRouter } from 'next/router';
 import { AsideMenu } from '@/components/AsideMenu';
-
+import { PostSender } from '@/components/PostSender';
 export default function HomePage() {
 
     const router = useRouter();
@@ -42,7 +42,7 @@ export default function HomePage() {
                     <AsideMenu />
                 </aside>
                 <main className={styles.mainContent}>
-
+                    <PostSender />
                 </main>
             </div>
         </main>

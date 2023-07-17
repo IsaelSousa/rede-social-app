@@ -1,12 +1,13 @@
 import Head from 'next/head';
 import styles from './styles.module.css';
 import { useRouter } from 'next/router';
-import { User } from '@/models/types';
-import { useEffect, useState } from 'react';
+import { ActualUser, User } from '@/models/types';
+import { useState } from 'react';
 import { loginUser } from '@/services/api';
 import { toast } from 'react-toastify';
 import CryptoJS from 'crypto-js';
 import axios from 'axios';
+import { useDispatch } from '@/context/provider';
 
 type Response = {
   message: any;
@@ -43,6 +44,8 @@ export default function Home() {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
   }
+
+  const dispatch = useDispatch();
 
   const handleLogin = () => {
     const key = process.env.NEXT_PUBLIC_APP_ENCRYPTED_KEY;
@@ -82,6 +85,12 @@ export default function Home() {
                   theme: "light",
                 });
               } else {
+                const payload: ActualUser = {
+                  userName: user.userName
+                }
+
+                dispatch({ type: 'ACTUAL_USER', payload });
+
                 toast.success(`Welcome, ${user.userName}`, {
                   position: "top-right",
                   autoClose: 5000,
@@ -92,8 +101,8 @@ export default function Home() {
                   progress: undefined,
                   theme: "light",
                 });
-  
-                const token = "Bearer "+data.message['token']
+
+                const token = "Bearer " + data.message['token']
                 axios.defaults.headers.common['Authorization'] = token;
                 handleLogged(token);
               }
