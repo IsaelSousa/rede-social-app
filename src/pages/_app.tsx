@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../styles/globals.css';
 import { Provider } from '@/context/provider';
 import { HeadLinksComponent } from '@/components/HeadLinksComponent';
+import { AuthenticatedValidation } from '@/services/authenticatedValidation';
 
 export default function App({ Component, pageProps }: AppProps) {
   return <>
@@ -22,7 +23,9 @@ export default function App({ Component, pageProps }: AppProps) {
       theme="light"
     />
     <Provider>
-      <Component {...pageProps} />
+        <AuthenticatedValidation>
+          <Component {...pageProps} />
+        </AuthenticatedValidation>
     </Provider>
   </>
 }

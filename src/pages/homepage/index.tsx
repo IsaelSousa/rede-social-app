@@ -3,12 +3,14 @@ import styles from './styles.module.css';
 import { useRouter } from 'next/router';
 import { AsideMenu } from '@/components/AsideMenu';
 import { PostSender } from '@/components/PostSender';
+import axios from 'axios';
 export default function HomePage() {
 
     const router = useRouter();
 
     const handleLogout = () => {
         router.push("/");
+        axios.defaults.headers.common['Authorization'] = undefined;
     }
 
     const handleHomePage = () => {

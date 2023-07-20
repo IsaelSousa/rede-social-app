@@ -74,7 +74,7 @@ export default function Home() {
             next(value) {
               const data = value as Response;
               if (data.status == false) {
-                toast.error('Login error.', {
+                toast.error(data.message, {
                   position: "top-right",
                   autoClose: 5000,
                   hideProgressBar: false,

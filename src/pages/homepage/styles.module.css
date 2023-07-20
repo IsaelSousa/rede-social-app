@@ -33,6 +33,9 @@
 }
 
 .mainButton {
+    display: flex;
+    width: 100%;
+
     padding-left: 10%;
     padding-right: 10%;
     font-size: 22pt;
@@ -42,6 +45,9 @@
     color: #000;
     border: none;
     background-color: none;
+
+    justify-content: center;
+    align-items: center;
 }
 
 .mainButton:hover {
@@ -78,5 +84,8 @@
 }
 
 .mainContent {
-    width: calc(75% - 250px);
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
 }

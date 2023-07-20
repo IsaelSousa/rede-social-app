@@ -11,7 +11,7 @@ export const createAxiosInstance = () => {
 export const registerUser = (data: string) => {
     return new Observable((subscriber) => {
         const axiosInstance = createAxiosInstance();
-        axiosInstance.post("/Auth/Register", data, {
+        axiosInstance.post("/Account/Register", data, {
             headers: {
                 'Content-Type': 'text/plain'
             }
@@ -27,13 +27,57 @@ export const registerUser = (data: string) => {
 export const loginUser = (data: string) => {
     return new Observable((subscriber) => {
         const axiosInstance = createAxiosInstance();
-        axiosInstance.post("/Auth/Login", data, {
+        axiosInstance.post("/Account/Login", data, {
             headers: {
                 'Content-Type': 'text/plain'
             }
         })
         .then((resp) => {
             subscriber.next(resp.data);
+            subscriber.complete();
+        })
+        .catch((err) => subscriber.error(err));
+    });
+}
+
+export const sendPost = (data: string) => {
+    return new Observable((subscriber) => {
+        const axiosInstance = createAxiosInstance();
+        axiosInstance.post("/Post/InsertPost", data, {
+            headers: {
+                'Content-Type': 'text/plain'
+            }
+        })
+        .then((resp) => {
+            subscriber.next(resp.data);
+            subscriber.complete();
+        })
+        .catch((err) => subscriber.error(err));
+    });
+}
+
+export const getPost = (data: string) => {
+    return new Observable((subscriber) => {
+        const axiosInstance = createAxiosInstance();
+        axiosInstance.post("/Post/GetPost", data, {
+            headers: {
+                'Content-Type': 'text/plain'
+            }
+        })
+        .then((resp) => {
+            subscriber.next(resp.data);
+            subscriber.complete();
+        })
+        .catch((err) => subscriber.error(err));
+    });
+}
+
+export const validationToken = () => {
+    return new Observable((subscriber) => {
+        const axiosInstance = createAxiosInstance();
+        axiosInstance.get("/Account/ValidationToken")
+        .then((resp) => {
+            subscriber.next(resp.status);
             subscriber.complete();
         })
         .catch((err) => subscriber.error(err));
