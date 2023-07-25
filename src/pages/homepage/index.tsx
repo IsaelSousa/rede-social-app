@@ -4,8 +4,12 @@ import { useRouter } from 'next/router';
 import { AsideMenu } from '@/components/AsideMenu';
 import { PostSender } from '@/components/PostSender';
 import axios from 'axios';
+import { getPost } from '@/services/api';
+import { useEffect, useState } from 'react';
+import { Post } from '@/models/types';
+import { PostComponent } from '@/components/PostComponent';
 export default function HomePage() {
-
+    const [post, setPost] = useState<Array<Post>>();
     const router = useRouter();
 
     const handleLogout = () => {
@@ -15,7 +19,27 @@ export default function HomePage() {
 
     const handleHomePage = () => {
         router.push("/homepage");
+        handleGetPostData();
     }
+
+    const handleGetPostData = () => {
+        getPost()
+        .subscribe({
+            next: (value: any) => {
+                setPost(value['message']);
+            },
+            complete: () => {
+                
+            },
+            error: () => {
+
+            }
+        })
+    }
+
+    useEffect(() => {
+        handleGetPostData();
+    }, []);
 
     return (
         <main className={styles.main}>
@@ -45,6 +69,13 @@ export default function HomePage() {
                 </aside>
                 <main className={styles.mainContent}>
                     <PostSender />
+                    
+                    <div className={styles.postContent}>
+                        {
+                            post?.map((vl: Post, idx: number) => <PostComponent key={idx} post={vl} />)
+                        }
+                    </div>
+
                 </main>
             </div>
         </main>

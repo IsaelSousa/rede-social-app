@@ -86,6 +86,13 @@
 .mainContent {
     display: flex;
     width: 100%;
-    justify-content: center;
+    flex-direction: column;
     align-content: center;
+}
+
+.postContent {
+    display: flex;
+    width: 70%;
+    align-items: center;
+    flex-direction: column;
 }

@@ -56,14 +56,10 @@ export const sendPost = (data: string) => {
     });
 }
 
-export const getPost = (data: string) => {
+export const getPost = (data?: string) => {
     return new Observable((subscriber) => {
         const axiosInstance = createAxiosInstance();
-        axiosInstance.post("/Post/GetPost", data, {
-            headers: {
-                'Content-Type': 'text/plain'
-            }
-        })
+        axiosInstance.get("/Post/GetPost")
         .then((resp) => {
             subscriber.next(resp.data);
             subscriber.complete();

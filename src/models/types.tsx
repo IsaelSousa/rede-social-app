@@ -13,3 +13,11 @@ export type User = {
 export type ActualUser = {
     userName: string;
 }
+
+export type Post = {
+    postId: string;
+    postImage: string;
+    postMsg: string;
+    postCreatedAt: Date;
+    postCreatedBy: string;
+}

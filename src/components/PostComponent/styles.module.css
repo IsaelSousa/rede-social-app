@@ -1,0 +1,48 @@
+.container {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.postDateContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.postP {
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.content {
+    width: 70%;
+    align-items: start;
+    justify-content: start;
+}
+
+.postMsg {
+    margin-top: 0.5rem;
+    font-family: 'kanit';  
+}
+
+.divider {
+    height: 1px;
+    width: 100%;
+    background-color: gray;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+}
+
+.televisionContainer {
+    display: flex;
+    align-items: center;
+}
+
+.television {
+    position: absolute;
+    margin-left: 1.4rem;
+}

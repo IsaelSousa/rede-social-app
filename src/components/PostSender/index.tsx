@@ -51,8 +51,8 @@ export const PostSender = () => {
     const handlePost = () => {
         if (post && post?.length > 0) {
             const postData = {
-                image: selectedImageToApi,
-                post: post
+                Image: selectedImageToApi,
+                PostMessage: post
             }
 
             const key = process.env.NEXT_PUBLIC_APP_ENCRYPTED_KEY;
@@ -62,10 +62,13 @@ export const PostSender = () => {
                     mode: CryptoJS.mode.ECB
                 });
                 const hash = encryptedData.toString();
-                console.log('header', axios.defaults.headers.common.Authorization);
                 sendPost(hash)
                 .subscribe({
-                    complete: () => {},
+                    complete: () => {
+                        setPost('');
+                        setSelectedImage('');
+                        setSelectedImageToApi('');
+                    },
                     error: (err) => {
                         console.log('ih', err.response);
                     },
