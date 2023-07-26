@@ -94,7 +94,7 @@ export const PostSender = () => {
 
             {selectedImage && <ImageRenderer src={selectedImage} onClick={() => setSelectedImage('')} />}
 
-            <textarea placeholder='Say here.' className={styles.textAreaStyled} cols={60} rows={4} onChange={(e) => setPost(e.target.value)} value={post} />
+            <textarea placeholder='Say here.' className={styles.textAreaStyled} cols={60} rows={3} onChange={(e) => setPost(e.target.value)} value={post} />
 
             <div className={styles.buttonContainer}>
                 <InputFileButton title='Image' onChange={handleFileInputChange} icon={<MdPublish size={20} />} />

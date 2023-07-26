@@ -2,6 +2,8 @@
     display: flex;
     width: 100%;
     flex-direction: column;
+
+    background-color: #0f0f0f;
 }
 
 .nav {
@@ -42,7 +44,7 @@
     font-family: 'Kanit';
     font-weight: bold;
     background-color: inherit;
-    color: #000;
+    color: white;
     border: none;
     background-color: none;
 

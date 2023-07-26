@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 export const createAxiosInstance = () => {
     return axios.create({
-        baseURL: "http://192.168.0.121:5281",
+        baseURL: "http://192.168.50.134:5281",
         timeout: 3000
     });
 }

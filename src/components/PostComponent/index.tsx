@@ -22,7 +22,7 @@ export const PostComponent = (props: PostComponentProps) => {
         <main className={styles.container}>
             <div className={styles.content}>
                 <div className={styles.postDateContainer}>
-                    <h2>{props.post.postCreatedBy}</h2>
+                    <h2 style={{ color: 'white' }}>{props.post.postCreatedBy}</h2>
                     <p className={styles.postP}>- {handleDate(props.post.postCreatedAt)}</p>
                 </div>
                 <p className={styles.postMsg}>{props.post.postMsg}</p>
