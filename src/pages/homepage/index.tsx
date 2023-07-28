@@ -75,7 +75,6 @@ export default function HomePage() {
                             post?.map((vl: Post, idx: number) => <PostComponent key={idx} post={vl} />)
                         }
                     </div>
-
                 </main>
             </div>
         </main>

@@ -2,7 +2,6 @@
     display: flex;
     width: 100%;
     flex-direction: column;
-
     background-color: #0f0f0f;
 }
 
@@ -90,6 +89,7 @@
     width: 100%;
     flex-direction: column;
     align-content: center;
+    overflow-y: scroll;
 }
 
 .postContent {

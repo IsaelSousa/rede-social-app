@@ -5,6 +5,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+    margin-bottom: 0.5rem;
 }
 
 .postDateContainer {
@@ -37,14 +38,23 @@
     background-color: gray;
     margin-bottom: 2rem;
     border-radius: 10px;
+    margin-top: 2rem;
 }
 
 .televisionContainer {
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .television {
     position: absolute;
     margin-left: 1.4rem;
+
+    height: 210px;
+    width: 370px;
+
+    top: 10px;
+    left: 0px;
+    opacity: 1;
 }

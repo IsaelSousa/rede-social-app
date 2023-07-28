@@ -31,7 +31,11 @@ export const PostComponent = (props: PostComponentProps) => {
             {
                 props.post.postImage && <div className={styles.televisionContainer}>
                     <img className={styles.television} src={Television.src} alt="" />
-                    <Base64Image base64String={props.post.postImage} />
+                    <Base64Image
+                    base64String={props.post.postImage}
+                    height="150px"
+                    width="250px"
+                    />
                 </div>
             }
 
