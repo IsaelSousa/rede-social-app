@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
 
-    background-color: #0f0f0f;
+    background-color: #F2F2F2;
 
     width: 100vw;
     height: 100vh;
@@ -12,13 +12,13 @@
 .title {
     font-size: 32pt;
     font-family: 'Kanit';
-    color: white;
+    color: #010101;
 }
 
 .label {
     font-size: 16pt;
     font-family: 'Kanit';
-    color: white;
+    color: #010101;
 }
 
 .input {
@@ -28,6 +28,13 @@
     padding-right: 10%;
     margin: 0.5rem;
     text-align: center;
+
+    border-width: 2px;
+    border-style: solid;
+    border-color: #000000;
+
+    box-shadow: -3px 3px 0px black;
+    border-radius: 20px;
 }
 
 .button {
@@ -42,6 +49,8 @@
     color: #FFFFFF;
     border: none;
     margin: 0.4rem;
+
+    border-radius: 4px;
 }
 
 .button:hover {

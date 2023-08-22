@@ -11,9 +11,16 @@
 
     border: none;
     border-radius: 5px;
-    background-color: rgb(214, 214, 214);
+    background-color: #F1F1F1;
 
     height: 40px;
+
+    border-width: 2px;
+    border-style: solid;
+    border-color: #000000;
+
+    box-shadow: -3px 3px 0px black;
+    border-radius: 10px;
 }
 
 .container:hover {

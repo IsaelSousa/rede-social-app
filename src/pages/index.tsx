@@ -153,7 +153,7 @@ export default function Home() {
           <h1 className={styles.title}>Social Network</h1>
         </div>
 
-        <div className={styles.mainDivisor} >
+        <div className={styles.mainDivisorInput} >
           <div className={styles.directionRow}>
             <div className={styles.directionCenter}>
               <label className={styles.label} htmlFor="user">User</label>

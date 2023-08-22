@@ -2,7 +2,7 @@
     display: flex;
     width: 100%;
     flex-direction: column;
-    background-color: #0f0f0f;
+    background-color: #F1F1F1;
 }
 
 .nav {
@@ -43,7 +43,7 @@
     font-family: 'Kanit';
     font-weight: bold;
     background-color: inherit;
-    color: white;
+    color: #010101;
     border: none;
     background-color: none;
 
@@ -62,11 +62,18 @@
     font-size: 12pt;
     font-family: 'Kanit';
     font-weight: 500;
-    background-color: #919191;
-    color: #FFFFFF;
+    background-color: #F1F1F1;
+    color: #010101;
     border: none;
     border-radius: 5px;
     margin: 0.3rem;
+
+    border-width: 2px;
+    border-style: solid;
+    border-color: #000000;
+
+    box-shadow: -3px 3px 0px black;
+    border-radius: 10px;
 }
 
 .logoutButton:hover {

@@ -9,7 +9,6 @@ import { ImageRenderer } from '../ImageRenderer';
 import { toast } from 'react-toastify';
 import { sendPost } from '@/services/api';
 import CryptoJS from 'crypto-js';
-import axios from 'axios';
 
 export const PostSender = () => {
     const [selectedImage, setSelectedImage] = useState<string>();
