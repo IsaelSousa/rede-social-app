@@ -28,11 +28,17 @@
     border-radius: 10px;
     resize: none;
 
-    
     border-width: 2px;
     border-style: solid;
     border-color: #000000;
 
     box-shadow: -2px 2px 0px black;
     border-radius: 10px;
+}
+
+.divider {
+    height: 1px;
+    width: 80%;
+    background: rgb(95, 95, 95);
+    margin: 20px;
 }

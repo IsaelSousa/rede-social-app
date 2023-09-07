@@ -1,10 +1,3 @@
-.main {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    background-color: #F1F1F1;
-}
-
 .nav {
     display: flex;
     width: 100%;
@@ -90,25 +83,3 @@
 .asideContent {
     width: 250px;
 }
-
-.mainContent {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-content: center;
-    overflow: hidden;
-}
-
-.postContent {
-    display: flex;
-    width: 70%;
-    align-items: center;
-    flex-direction: column;
-
-    scrollbar-width: none;
-    overflow: auto;
-}
-
-.postContent::-webkit-scrollbar {
-    display: none;
-  }

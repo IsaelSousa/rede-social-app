@@ -7,13 +7,16 @@ import { AiOutlineSmile } from 'react-icons/ai';
 import { MdPublish } from 'react-icons/Md';
 import { ImageRenderer } from '../ImageRenderer';
 import { toast } from 'react-toastify';
-import { sendPost } from '@/services/api';
+import { getPost, sendPost } from '@/services/api';
 import CryptoJS from 'crypto-js';
+import { useDispatch } from '@/context/provider';
 
 export const PostSender = () => {
     const [selectedImage, setSelectedImage] = useState<string>();
     const [selectedImageToApi, setSelectedImageToApi] = useState<string>();
     const [post, setPost] = useState<string>();
+
+    const dispatch = useDispatch();
 
     const imageTypes = [
         'image/png',
@@ -47,6 +50,22 @@ export const PostSender = () => {
         }
     };
 
+    const handleGetData = () => {
+        getPost()
+        .subscribe({
+          next: (value: any) => {
+            const payload = { data: value['message'] };
+            dispatch({ type: 'SET_POST', payload });
+          },
+          complete: () => {
+  
+          },
+          error: () => {
+  
+          }
+        });
+    }
+
     const handlePost = () => {
         if (post && post?.length > 0) {
             const postData = {
@@ -67,9 +86,9 @@ export const PostSender = () => {
                         setPost('');
                         setSelectedImage('');
                         setSelectedImageToApi('');
+                        handleGetData();
                     },
                     error: (err) => {
-                        console.log('ih', err.response);
                     },
                 });
             }
@@ -99,6 +118,7 @@ export const PostSender = () => {
                 <InputFileButton title='Image' onChange={handleFileInputChange} icon={<MdPublish size={20} />} />
                 <MenuButton title='Publish' icon={<AiOutlineSmile size={20} />} onClick={handlePost} />
             </div>
+            <div className={styles.divider}></div>
         </main>
     );
 }

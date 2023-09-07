@@ -42,12 +42,10 @@ export default function HomePage() {
         error: () => {
 
         }
-      })
+      });
   }
 
-  useEffect(() => setPost(data['data']), [data]);
-
-  useEffect(() => console.log(data), [data]);
+  useEffect(() => setPost(data ? data['data'] : []), [data]);
 
   useEffect(() => {
     handleGetPostData();
