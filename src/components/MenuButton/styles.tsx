@@ -1,4 +1,6 @@
-.container {
+import styled from 'styled-components';
+
+const Container = styled.button`
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -21,19 +23,25 @@
 
     box-shadow: -3px 3px 0px black;
     border-radius: 10px;
-}
 
-.container:hover {
-    cursor: pointer;
-    background-color: rgb(182, 182, 182);
-}
+    :hover {
+        cursor: pointer;
+        background-color: rgb(182, 182, 182);
+    }
+`;
 
-.icon {
+const Icon = styled.div`
     margin-right: 15px;
     margin-left: 10px;
-}
+`;
 
-.title {
+const Title = styled.div`
     font-size: 12pt;
     font-family: 'Kanit';
-}
+`;
+
+export { 
+    Container,
+    Icon,
+    Title
+ };

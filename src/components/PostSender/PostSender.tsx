@@ -1,15 +1,15 @@
 import React, { ChangeEvent, useState } from 'react';
-import styles from './styles.module.css';
-import { MenuButton } from '../MenuButton';
-import { InputFileButton } from '../InputFileButton';
+import { MenuButton } from '../MenuButton/MenuButton';
+import { InputFileButton } from '../InputFileButton/InputFileButton';
 
 import { AiOutlineSmile } from 'react-icons/ai';
 import { MdPublish } from 'react-icons/Md';
-import { ImageRenderer } from '../ImageRenderer';
+import { ImageRenderer } from '../ImageRenderer/ImageRenderer';
 import { toast } from 'react-toastify';
 import { getPost, sendPost } from '@/services/api';
 import CryptoJS from 'crypto-js';
 import { useDispatch } from '@/context/provider';
+import { ButtonContainer, Container, Divider, TextAreaStyled, Title } from './styles';
 
 export const PostSender = () => {
     const [selectedImage, setSelectedImage] = useState<string>();
@@ -35,7 +35,6 @@ export const PostSender = () => {
                 }
                 reader.readAsDataURL(file);
             } else {
-                console.log(file);
                 toast.error('Only can use png/jpeg files.', {
                     position: "top-right",
                     autoClose: 5000,
@@ -107,18 +106,18 @@ export const PostSender = () => {
     };
 
     return (
-        <main className={styles.container}>
-            <h1 className={styles.title}>Publicação</h1>
+        <Container>
+            <Title>Publish</Title>
 
             {selectedImage && <ImageRenderer src={selectedImage} onClick={() => setSelectedImage('')} />}
 
-            <textarea placeholder='Say here.' className={styles.textAreaStyled} cols={60} rows={3} onChange={(e) => setPost(e.target.value)} value={post} />
+            <TextAreaStyled placeholder='Say here.' cols={60} rows={3} onChange={(e) => setPost(e.target.value)} value={post} />
 
-            <div className={styles.buttonContainer}>
+            <ButtonContainer>
                 <InputFileButton title='Image' onChange={handleFileInputChange} icon={<MdPublish size={20} />} />
                 <MenuButton title='Publish' icon={<AiOutlineSmile size={20} />} onClick={handlePost} />
-            </div>
-            <div className={styles.divider}></div>
-        </main>
+            </ButtonContainer>
+            <Divider />
+        </Container>
     );
 }

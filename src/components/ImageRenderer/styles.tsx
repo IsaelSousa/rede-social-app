@@ -1,10 +1,12 @@
-.img {
+import styled from 'styled-components';
+
+export const Img = styled.img`
     width: 300px;
     height: 200px;
     margin: 1rem;
-}
+`;
 
-.button {
+export const Button = styled.button`
     width: 35px;
     height: 35px;
 
@@ -21,8 +23,8 @@
 
     position: absolute;
     z-index: 998;
-}
 
-.button:hover {
-    cursor: pointer;
-}
+    :hover {
+        cursor: pointer;
+    }
+`;

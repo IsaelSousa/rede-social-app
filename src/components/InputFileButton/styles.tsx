@@ -1,4 +1,6 @@
-.container {
+import styled from 'styled-components';
+
+export const Container = styled.label`
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -15,23 +17,23 @@
 
     box-shadow: -3px 3px 0px black;
     border-radius: 10px;
-}
+`;
 
-.input {
+export const Input = styled.input`
     display: none;
-}
 
-.container:hover {
-    cursor: pointer;
-    background-color: rgb(182, 182, 182);
-}
+    :hover {
+        cursor: pointer;
+        background-color: rgb(182, 182, 182);
+    }
+`;
 
-.icon {
+export const Icon = styled.div`
     margin-right: 15px;
     margin-left: 10px;
-}
+`;
 
-.title {
+export const Title = styled.div`
     font-size: 12pt;
     font-family: 'Kanit';
-}
+`;

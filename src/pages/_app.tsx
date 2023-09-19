@@ -4,7 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/globals.css';
 import { Provider } from '@/context/provider';
-import { HeadLinksComponent } from '@/components/HeadLinksComponent';
+import { HeadLinksComponent } from '@/components/shared/HeadLinksComponent/HeadLinksComponent';
 import { AuthenticatedValidation } from '@/services/authenticatedValidation';
 
 export default function App({ Component, pageProps }: AppProps) {

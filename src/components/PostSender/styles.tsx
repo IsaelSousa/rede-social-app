@@ -1,18 +1,20 @@
-.container {
+import styled from 'styled-components';
+
+const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
 
     width: 70%;
-}
+`;
 
-.title {
+const Title = styled.h1`
     font-size: 22pt;
     font-family: 'Kanit';
     color: #010101;
-}
+`;
 
-.buttonContainer {
+const ButtonContainer = styled.div`
     display: flex;
     width: 75%;
 
@@ -20,9 +22,9 @@
     align-items: center;
     justify-content:end;
     margin-top: 0.5rem;
-}
+`;
 
-.textAreaStyled {
+const TextAreaStyled = styled.textarea`
     width: inherit;
     padding: 5px;
     border-radius: 10px;
@@ -34,11 +36,19 @@
 
     box-shadow: -2px 2px 0px black;
     border-radius: 10px;
-}
+`;
 
-.divider {
+const Divider = styled.div`
     height: 1px;
     width: 80%;
     background: rgb(95, 95, 95);
     margin: 20px;
-}
+`;
+
+export {
+    Container,
+    Title,
+    ButtonContainer,
+    TextAreaStyled,
+    Divider
+};

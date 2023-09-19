@@ -1,4 +1,6 @@
-.img {
+import styled from 'styled-components';
+
+export const Img = styled.img`
     width: 330px;
     height: 230px;
 
@@ -8,4 +10,4 @@
     padding-bottom: 1rem;
 
     border-radius: 10px;
-}
+`;

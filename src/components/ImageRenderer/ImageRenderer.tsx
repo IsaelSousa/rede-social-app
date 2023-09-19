@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles.module.css';
+import { Button, Img } from './styles';
 
 type ImageRendererType = {
     src: string;
@@ -9,10 +9,10 @@ type ImageRendererType = {
 export const ImageRenderer = (props: ImageRendererType) => {
     return (
         <main>
-            <button className={styles.button} onClick={props.onClick}>
+            <Button onClick={props.onClick}>
                 X
-            </button>
-            <img src={props.src} className={styles.img} />
+            </Button>
+            <Img src={props.src} />
         </main>
     );
 }

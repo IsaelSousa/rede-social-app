@@ -1,13 +1,13 @@
-import { HeadLinksComponent } from '@/components/HeadLinksComponent';
+import { HeadLinksComponent } from '@/components/shared/HeadLinksComponent/HeadLinksComponent';
 import styles from './styles.module.css';
 import { useRouter } from 'next/router';
-import { AsideMenu } from '@/components/AsideMenu';
-import { PostSender } from '@/components/PostSender';
+import { AsideMenu } from '@/components/AsideMenu/AsideMenu';
+import { PostSender } from '@/components/PostSender/PostSender';
 import axios from 'axios';
 import { getPost } from '@/services/api';
 import { useEffect, useState } from 'react';
 import { Post } from '@/models/types';
-import { PostComponent } from '@/components/PostComponent';
+import { PostComponent } from '@/components/PostComponent/PostComponent';
 import { useDispatch, useSelector } from '@/context/provider';
 
 export default function HomePage() {

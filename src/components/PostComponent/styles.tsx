@@ -1,4 +1,6 @@
-.container {
+import styled from 'styled-components';
+
+const Container = styled.main`
     width: 70%;
     display: flex;
     flex-direction: column;
@@ -15,50 +17,47 @@
     border-radius: 10px;
 
     font-family: 'Kanit';
-}
+`;
 
-.postDateContainer {
+const PostDateContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-}
+`;
 
-.postP {
+const PostP = styled.p`
     margin-left: 5px;
     font-weight: bold;
     color: #000;
     font-family: 'Kanit';
-}
+`;
 
-.content {
+const Content = styled.div`
     width: 70%;
     align-items: center;
     justify-content: space-between;
 
     display: flex;
     flex-direction: row;
-}
+`;
 
-.postMsg {
+const PostMsg = styled.p`
     margin-top: 0.5rem;
     font-family: 'kanit';  
     color: #000;
-}
+`;
 
-.televisionContainer {
+const ImageContainer = styled.div`
     display: flex;
     align-items: center;
     position: relative;
-}
+`;
 
-.television {
-    position: absolute;
-    margin-left: 1.4rem;
-
-    height: 210px;
-    width: 370px;
-
-    top: 10px;
-    left: 0px;
-    opacity: 1;
-}
+export {
+    Container,
+    PostDateContainer,
+    PostP,
+    Content,
+    PostMsg,
+    ImageContainer
+};

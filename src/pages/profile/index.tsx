@@ -1,7 +1,7 @@
-import { HeadLinksComponent } from '@/components/HeadLinksComponent';
+import { HeadLinksComponent } from '@/components/shared/HeadLinksComponent/HeadLinksComponent';
 import React from 'react';
 import styles from './styles.module.css';
-import { AsideMenu } from '@/components/AsideMenu';
+import { AsideMenu } from '@/components/AsideMenu/AsideMenu';
 import router from 'next/router';
 import axios from 'axios';
 

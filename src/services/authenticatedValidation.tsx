@@ -24,11 +24,13 @@ export const AuthenticatedValidation = (props: AuthenticatedValidationProps) => 
             const epic = validationToken();
             epic.subscribe({
                 next: (resp: any) => {
+                    console.log('resp', resp);
                     setStatus(resp);
                 },
                 complete: () => { },
                 error: () => { }
             });
+
             if (status) {
                 return props.children;
             } else {
