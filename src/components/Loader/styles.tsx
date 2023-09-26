@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const LoaderSpinner = styled.span`
-    width: 48px;
-    height: 48px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     display: inline-block;
-    border-top: 4px solid #9b1919;
+    border-top: 4px solid #4d4d4d;
     border-right: 4px solid transparent;
     box-sizing: border-box;
     animation: rotation 1s linear infinite;

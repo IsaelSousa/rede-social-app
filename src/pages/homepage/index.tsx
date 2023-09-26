@@ -17,7 +17,7 @@ export default function HomePage() {
 
   const router = useRouter();
   const dispatch = useDispatch();
-  
+
   const handleLogout = () => {
     router.push('/');
     axios.defaults.headers.common['Authorization'] = undefined;
@@ -25,7 +25,7 @@ export default function HomePage() {
 
   const handleHomePage = () => {
     if (router.asPath != "/homepage") {
-      router.push('/homepage'); 
+      router.push('/homepage');
     }
     handleGetPostData();
   }
@@ -37,13 +37,11 @@ export default function HomePage() {
           const payload = { data: value['message'] };
           dispatch({ type: 'SET_POST', payload });
           dispatch({ type: 'SET_LOADER', payload: true });
-          console.log('initial');
         },
         complete: () => {
-          console.log('complete');
-          // setTimeout(() => {
-          //   dispatch({ type: 'SET_LOADER', payload: false });
-          // }, 5000);
+          setTimeout(() => {
+            dispatch({ type: 'SET_LOADER', payload: false });
+          }, 500);
         },
         error: () => {
 
@@ -60,8 +58,6 @@ export default function HomePage() {
   return (
     <main className={styles.main}>
       <HeadLinksComponent title='HomePage' />
-      <Loader active={loader} />
-
       <nav className={styles.nav}>
         <div className={styles.navDivA}>
           <button
@@ -89,9 +85,14 @@ export default function HomePage() {
           <PostSender />
 
           <div className={styles.postContent}>
+
             {
-              post?.map((vl: Post, idx: number) => <PostComponent key={idx} post={vl} />)
+              loader ? <Loader active={loader} /> : post?.map((vl: Post, idx: number) => <PostComponent key={idx} post={vl} />)
             }
+
+            {/* {
+              post?.map((vl: Post, idx: number) => <PostComponent key={idx} post={vl} />)
+            } */}
           </div>
         </main>
       </div>

@@ -6,7 +6,6 @@ import '../styles/globals.css';
 import { Provider } from '@/context/provider';
 import { HeadLinksComponent } from '@/components/shared/HeadLinksComponent/HeadLinksComponent';
 import { AuthenticatedValidation } from '@/services/authenticatedValidation';
-import { Loader } from '@/components/Loader/Loader';
 
 export default function App({ Component, pageProps }: AppProps) {
   return <>
