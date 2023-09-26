@@ -1,10 +1,11 @@
-import React from 'react';
+import { useSelector } from '@/context/provider';
+import React, { useEffect, useState } from 'react';
+import { LoaderSpinner } from './styles';
 
-export const Loader = () => {
-
+export const Loader: React.FC<{ active: boolean }> = ({ active }) => {
     return (
-        <main>
-            <Loader />
-        </main>
+        <div>
+            {active ? <LoaderSpinner /> : <></>}
+        </div>
     );
 }

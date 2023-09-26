@@ -4,11 +4,12 @@ enum Types {
     ACTUAL_USER = 'ACTUAL_USER',
     GET_USER = 'GET_USER',
     SET_POST = 'SET_POST',
-    START_LOADER = 'START_LOADER'
+    SET_LOADER = 'SET_LOADER'
 }
 
 export const initialState: State = {
     userName: '',
+    loader: false,
     data: null
 };
 
@@ -20,8 +21,8 @@ export const Reducer = (state = initialState, action: any): State => {
             return { ...state, ...GetActualUser(action, state) };
         case Types.SET_POST:
             return { ...state, ...SetGetPost(action, state) };
-        case Types.START_LOADER:
-            return { ...state, ...SetStartLoader(action, state) };
+        case Types.SET_LOADER:
+            return { ...state, ...SetLoader(action, state) };
         default:
             return state;
     }
@@ -39,6 +40,6 @@ const SetGetPost = (action: any, state: State) => {
     return { data: action.payload };
 }
 
-const SetStartLoader = (action: any, state: State) => {
-    return { data: action.payload };
+const SetLoader = (action: any, state: State) => {
+    return { loader: action.payload };
 }

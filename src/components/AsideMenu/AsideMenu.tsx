@@ -3,14 +3,10 @@ import { MenuButton } from '../MenuButton/MenuButton';
 import { MdFeed } from 'react-icons/Md';
 import { BsFillChatTextFill, BsWrenchAdjustableCircleFill } from 'react-icons/Bs';
 import { CgProfile } from 'react-icons/Cg';
-import { useSelector } from '@/context/provider';
 import router from 'next/router';
 import { Container } from './styles';
 
 export const AsideMenu = () => {
-
-    const { userName } = useSelector((store) => { return store });
-
     return (
         <Container>
             <MenuButton title="Feed" icon={<MdFeed size={30} />} onClick={() => {

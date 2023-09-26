@@ -9,10 +9,11 @@ import { useEffect, useState } from 'react';
 import { Post } from '@/models/types';
 import { PostComponent } from '@/components/PostComponent/PostComponent';
 import { useDispatch, useSelector } from '@/context/provider';
+import { Loader } from '@/components/Loader/Loader';
 
 export default function HomePage() {
   const [post, setPost] = useState<Array<Post>>([]);
-  const { data } = useSelector((store) => { return store });
+  const { data, loader } = useSelector((store) => { return store });
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -35,9 +36,14 @@ export default function HomePage() {
         next: (value: any) => {
           const payload = { data: value['message'] };
           dispatch({ type: 'SET_POST', payload });
+          dispatch({ type: 'SET_LOADER', payload: true });
+          console.log('initial');
         },
         complete: () => {
-
+          console.log('complete');
+          // setTimeout(() => {
+          //   dispatch({ type: 'SET_LOADER', payload: false });
+          // }, 5000);
         },
         error: () => {
 
@@ -54,6 +60,8 @@ export default function HomePage() {
   return (
     <main className={styles.main}>
       <HeadLinksComponent title='HomePage' />
+      <Loader active={loader} />
+
       <nav className={styles.nav}>
         <div className={styles.navDivA}>
           <button

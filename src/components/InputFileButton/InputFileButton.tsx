@@ -8,12 +8,13 @@ type InputFileButtonType = {
 } 
 
 export const InputFileButton = (props: InputFileButtonType) => {
-    const fileRef = useRef(null);
-    
+    const initialRef: any = null;
+    const fileRef = useRef(initialRef);
+
     return (
         <main>
             <Input type="file" ref={fileRef} onChange={props.onChange} />
-            <Container onClick={() => fileRef.current.click()}>
+            <Container onClick={() => fileRef.current ? fileRef.current.click() : null}>
                 <Icon>{props.icon}</Icon>
                 <Title>{props.title}</Title>
             </Container>
