@@ -9,3 +9,19 @@ export type User = {
     phoneNumberConfirmed: boolean;
     twoFactorEnabled: boolean;
 }
+
+export type ActualUser = {
+    userName: string;
+}
+
+export type Post = {
+    postId: string;
+    postImage: string;
+    postMsg: string;
+    postCreatedAt: Date;
+    postCreatedBy: string;
+}
+
+export enum CookiesEnum {
+    Auth = 'Authorization',
+}

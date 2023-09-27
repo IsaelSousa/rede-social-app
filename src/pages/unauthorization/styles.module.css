@@ -1,0 +1,38 @@
+.main {
+    display: flex;
+
+    height: 100%;
+    margin-top: 5rem;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-family: 'Kanit';
+}
+
+.msg {
+    font-family: 'Kanit';
+    margin-bottom: 1rem;
+}
+
+.button {
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    padding-left: 10%;
+    padding-right: 10%;
+
+    font-family: 'Kanit';
+    font-weight: 500;
+    background-color: #919191;
+    color: #FFFFFF;
+    border: none;
+    margin: 0.4rem;
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: #696969;
+}

@@ -1,18 +1,39 @@
 .main {
     display: flex;
+    padding-top: 4rem;
     flex-direction: column;
-    justify-content: space-between;
+
     align-items: center;
+
+    background-color: #F2F2F2;
+
+    width: 100vw;
+    height: calc(100vh - 4rem);
 }
 
 .title {
     font-size: 32pt;
     font-family: 'Kanit';
+    color: #010101;
+}
+
+.savechanges {
+    font-size: 12pt;
+    font-family: 'Kanit';
+}
+
+.savechangesinput {
+    margin-left: 10px;
+}
+
+.savechangesinput:hover {
+    cursor: pointer;
 }
 
 .label {
     font-size: 16pt;
     font-family: 'Kanit';
+    color: #010101;
 }
 
 .input {
@@ -22,6 +43,13 @@
     padding-right: 10%;
     margin: 0.5rem;
     text-align: center;
+
+    border-width: 2px;
+    border-style: solid;
+    border-color: #000000;
+
+    box-shadow: -3px 3px 0px black;
+    border-radius: 20px;
 }
 
 .button {
@@ -32,15 +60,17 @@
 
     font-family: 'Kanit';
     font-weight: 500;
-    background-color: #919191;
+    background-color: #353535;
     color: #FFFFFF;
     border: none;
     margin: 0.4rem;
+
+    border-radius: 4px;
 }
 
 .button:hover {
     cursor: pointer;
-    background-color: #696969;
+    background-color: #393939;
 }
 
 .directionColumn {
@@ -55,15 +85,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0.8rem;
-
 }
 
 .directionRow {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
 }
 
 .buttonContainer {
@@ -71,4 +97,24 @@
     justify-content: center;
     flex-direction: column;
     width: 350px;
+}
+
+.mainDivisor {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.mainDivisorInput {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2%;
+
+    border-width: 2px;
+    border-style: solid;
+    border-color: #000000;
+
+    box-shadow: -6px 6px 0px black;
+    border-radius: 20px;
 }
