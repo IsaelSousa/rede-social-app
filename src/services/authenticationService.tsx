@@ -1,9 +1,10 @@
-import { ActualUser, User } from '@/models/types';
+import { ActualUser, CookiesEnum, User } from '@/models/types';
 import { loginUser } from './api';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { NextRouter } from 'next/router';
 import CryptoJS from 'crypto-js';
+import Cookies from 'js-cookie';
 
 type Response = {
   message: any;
@@ -70,7 +71,8 @@ export const authentication = (user: User, router: NextRouter, dispatch: any) =>
   
                 const token = 'Bearer ' + data.message['token']
                 axios.defaults.headers.common['Authorization'] = token;
-  
+                Cookies.set(CookiesEnum.Auth, token, { expires: 1 });
+
                 router.push({
                   pathname: '/homepage',
                   auth: token

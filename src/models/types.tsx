@@ -21,3 +21,7 @@ export type Post = {
     postCreatedAt: Date;
     postCreatedBy: string;
 }
+
+export enum CookiesEnum {
+    Auth = 'Authorization',
+}
