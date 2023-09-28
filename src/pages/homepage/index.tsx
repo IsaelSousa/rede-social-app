@@ -6,10 +6,11 @@ import { PostSender } from '@/components/PostSender/PostSender';
 import axios from 'axios';
 import { getPost } from '@/services/api';
 import { useEffect, useState } from 'react';
-import { Post } from '@/models/types';
+import { CookiesEnum, Post } from '@/models/types';
 import { PostComponent } from '@/components/PostComponent/PostComponent';
 import { useDispatch, useSelector } from '@/context/provider';
 import { Loader } from '@/components/Loader/Loader';
+import Cookies from 'js-cookie';
 
 export default function HomePage() {
   const [post, setPost] = useState<Array<Post>>([]);
@@ -21,6 +22,7 @@ export default function HomePage() {
   const handleLogout = () => {
     router.push('/');
     axios.defaults.headers.common['Authorization'] = undefined;
+    Cookies.remove(CookiesEnum.Auth);
   }
 
   const handleHomePage = () => {

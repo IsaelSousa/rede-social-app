@@ -4,6 +4,8 @@ import styles from './styles.module.css';
 import { AsideMenu } from '@/components/AsideMenu/AsideMenu';
 import router from 'next/router';
 import axios from 'axios';
+import Cookies from 'js-cookie';
+import { CookiesEnum } from '@/models/types';
 
 export default function Profile() {
 
@@ -16,6 +18,7 @@ export default function Profile() {
       const handleLogout = () => {
         router.push('/');
         axios.defaults.headers.common['Authorization'] = undefined;
+        Cookies.remove(CookiesEnum.Auth);
       }
 
     return (
