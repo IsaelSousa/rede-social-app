@@ -50,6 +50,10 @@
 
     box-shadow: -3px 3px 0px black;
     border-radius: 20px;
+
+    font-family: 'Kanit';
+    font-weight: bold;
+    font-size: 14pt;
 }
 
 .button {
