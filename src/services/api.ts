@@ -19,7 +19,7 @@ export const registerUser = (data: string) => {
             }
         })
         .then((resp) => {
-            subscriber.next(resp.data);
+            subscriber.next(resp.data["data"]);
             subscriber.complete();
         })
         .catch((err) => subscriber.error(err));
@@ -35,7 +35,8 @@ export const loginUser = (data: string) => {
             }
         })
         .then((resp) => {
-            subscriber.next(resp.data);
+            const data = resp.data;
+            subscriber.next(data);
             subscriber.complete();
         })
         .catch((err) => subscriber.error(err));
@@ -52,7 +53,7 @@ export const sendPost = (data: string) => {
             }
         })
         .then((resp) => {
-            subscriber.next(resp.data);
+            subscriber.next(resp.data["data"]);
             subscriber.complete();
         })
         .catch((err) => subscriber.error(err));
@@ -68,7 +69,7 @@ export const getPost = (data?: string) => {
             }
         })
         .then((resp) => {
-            subscriber.next(resp.data);
+            subscriber.next(resp.data["data"]);
             subscriber.complete();
         })
         .catch((err) => subscriber.error(err));

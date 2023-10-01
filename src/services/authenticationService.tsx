@@ -8,7 +8,13 @@ import Cookies from 'js-cookie';
 
 type Response = {
   message: any;
+  data: DataResult;
   status: boolean;
+}
+
+type DataResult = {
+  token: string;
+  expiration: string;
 }
 
 export const authentication = (user: User, router: NextRouter, dispatch: any) => {
@@ -38,9 +44,10 @@ export const authentication = (user: User, router: NextRouter, dispatch: any) =>
               reject(err);
             },
             next(value) {
-              const data = value as Response;
-              if (data.status == false) {
-                toast.error(data.message, {
+              const result = value as Response;
+
+              if (result.status == false) {
+                toast.error(result.message, {
                   position: 'top-right',
                   autoClose: 5000,
                   hideProgressBar: false,
@@ -69,7 +76,7 @@ export const authentication = (user: User, router: NextRouter, dispatch: any) =>
                   theme: 'light',
                 });
   
-                const token = 'Bearer ' + data.message['token']
+                const token = 'Bearer ' + result.data.token
                 axios.defaults.headers.common['Authorization'] = token;
                 Cookies.set(CookiesEnum.Auth, token, { expires: 1 });
 

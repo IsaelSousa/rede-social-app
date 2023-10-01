@@ -13,11 +13,15 @@ export const PostComponent = (props: PostComponentProps) => {
     const [height, setHeight] = useState<string>('');
 
     const handleDate = (date: Date) => {
-        const d = new Date(date);
-        const dateSplited = d.toISOString().split('T');
-        const fullDate = dateSplited[0];
-        const time = dateSplited[1].replace('Z', '').substring(0, 8);
-        return `${fullDate} ${time}`;
+        if (date != null) {
+            const d = new Date(date);
+            const dateSplited = d.toISOString().split('T');
+            const fullDate = dateSplited[0];
+            const time = dateSplited[1].replace('Z', '').substring(0, 8);
+            return `${fullDate} ${time}`;
+        } else {
+            return '';
+        }
     }
 
     useEffect(() => {
@@ -31,21 +35,21 @@ export const PostComponent = (props: PostComponentProps) => {
         <Container>
             <Content>
                 <PostDateContainer>
-                    <h2 style={{ color: '#000' }}>{props.post.postCreatedBy}</h2>
+                    <h2 style={{ color: '#000' }}>{props.post.firstName}</h2>
                 </PostDateContainer>
                 <div>
-                    <PostP>{handleDate(props.post.postCreatedAt)}</PostP>
+                    <PostP>{handleDate(props.post.createdAt)}</PostP>
                 </div>
             </Content>
 
             {
-                props.post.postImage ? (
+                props.post.image ? (
                     <>
-                        <PostMsg>{props.post.postMsg}</PostMsg>
+                        <PostMsg>{props.post.postMessage}</PostMsg>
 
                         <ImageContainer>
                             <Base64Image
-                                base64String={props.post.postImage}
+                                base64String={props.post.image}
                                 height={height}
                                 width={width}
                             />
@@ -53,7 +57,7 @@ export const PostComponent = (props: PostComponentProps) => {
                     </>
                 ) : (
                     <div style={{ marginBottom: '3%' }}>
-                        <PostMsg>{props.post.postMsg}</PostMsg>
+                        <PostMsg>{props.post.postMessage}</PostMsg>
                     </div>
                 )
             }

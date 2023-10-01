@@ -36,7 +36,7 @@ export default function HomePage() {
     getPost()
       .subscribe({
         next: (value: any) => {
-          const payload = { data: value['message'] };
+          const payload = { data: value };
           dispatch({ type: 'SET_POST', payload });
           dispatch({ type: 'SET_LOADER', payload: true });
         },
@@ -46,12 +46,18 @@ export default function HomePage() {
           }, 500);
         },
         error: () => {
-
         }
       });
   }
 
-  useEffect(() => setPost(data ? data['data'] : []), [data]);
+  useEffect(() => {
+    console.log(post);
+  }, [post]);
+
+  useEffect(() => {
+    const value = data;
+    setPost(value ? value['data'] : []);
+  }, [data]);
 
   useEffect(() => {
     handleGetPostData();
@@ -87,14 +93,9 @@ export default function HomePage() {
           <PostSender />
 
           <div className={styles.postContent}>
-
             {
               loader ? <Loader active={loader} /> : post?.map((vl: Post, idx: number) => <PostComponent key={idx} post={vl} />)
             }
-
-            {/* {
-              post?.map((vl: Post, idx: number) => <PostComponent key={idx} post={vl} />)
-            } */}
           </div>
         </main>
       </div>

@@ -15,11 +15,12 @@ export type ActualUser = {
 }
 
 export type Post = {
-    postId: string;
-    postImage: string;
-    postMsg: string;
-    postCreatedAt: Date;
-    postCreatedBy: string;
+    id: string;
+    firstName: string;
+    postMessage: string;
+    image: string;
+    createdAt: Date;
+    lastUpdated: Date;
 }
 
 export enum CookiesEnum {

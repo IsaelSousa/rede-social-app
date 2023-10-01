@@ -17,13 +17,16 @@ export const Container = styled.label`
 
     box-shadow: -3px 3px 0px black;
     border-radius: 10px;
+
+    &:hover {
+        cursor: pointer;
+    }
 `;
 
 export const Input = styled.input`
     display: none;
 
     :hover {
-        cursor: pointer;
         background-color: rgb(182, 182, 182);
     }
 `;

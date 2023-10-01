@@ -1,7 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import { MenuButton } from '../MenuButton/MenuButton';
 import { InputFileButton } from '../InputFileButton/InputFileButton';
-
 import { AiOutlineSmile } from 'react-icons/ai';
 import { MdPublish } from 'react-icons/Md';
 import { ImageRenderer } from '../ImageRenderer/ImageRenderer';
@@ -53,7 +52,8 @@ export const PostSender = () => {
         getPost()
         .subscribe({
           next: (value: any) => {
-            const payload = { data: value['message'] };
+            const payload = { data: value };
+            console.log(payload);
             dispatch({ type: 'SET_POST', payload });
           },
           complete: () => {
