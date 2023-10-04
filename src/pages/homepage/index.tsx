@@ -98,6 +98,7 @@ export default function HomePage() {
             }
           </div>
         </main>
+        <div className={styles.asideRight}></div>
       </div>
     </main>
   )

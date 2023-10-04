@@ -53,7 +53,6 @@ export const PostSender = () => {
         .subscribe({
           next: (value: any) => {
             const payload = { data: value };
-            console.log(payload);
             dispatch({ type: 'SET_POST', payload });
           },
           complete: () => {
