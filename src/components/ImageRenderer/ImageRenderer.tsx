@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Img } from './styles';
+import { Container, ImageContainer } from './styles';
+import { Image } from 'primereact/image';
 
 type ImageRendererType = {
     src: string;
@@ -8,11 +9,10 @@ type ImageRendererType = {
 
 export const ImageRenderer = (props: ImageRendererType) => {
     return (
-        <main>
-            <Button onClick={props.onClick}>
-                X
-            </Button>
-            <Img src={props.src} />
-        </main>
+        <Container>
+            <ImageContainer className="card flex justify-content-center">
+                <Image src={props.src} alt="Image" width='100' preview />
+            </ImageContainer>
+        </Container>
     );
 }

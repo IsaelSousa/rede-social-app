@@ -1,9 +1,18 @@
 import styled from 'styled-components';
 
-export const Img = styled.img`
-    width: 300px;
-    height: 200px;
-    margin: 1rem;
+export const Container = styled.div`
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+`;
+
+export const ImageContainer = styled.div`
+    width: 20px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+
 `;
 
 export const Button = styled.button`
@@ -17,14 +26,19 @@ export const Button = styled.button`
     background-color: white;
     padding: 10px;
     border-radius: 20px;
+    border: none;
+    box-shadow: -2px 3px 0px black;
+    border: 2px solid black;
 
     font-size: 15pt;
     font-weight: bold;
 
-    position: absolute;
-    z-index: 998;
+    transition: 300ms;
 
-    :hover {
+    &:hover {
+        width: 40px;
+        height: 40px;
+        transition: 300ms;
         cursor: pointer;
     }
 `;

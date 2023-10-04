@@ -1,42 +1,35 @@
-.main {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    background-color: #F1F1F1;
-}
+import styled from 'styled-components';
 
-.nav {
-    display: flex;
+const NavContainer = styled.nav`
     width: 100%;
     flex-direction: row;
     justify-content: space-between;
     height: 50px;
-}
+`;
 
-.navDivA {
+const NavDivA = styled.nav`
     display: flex;
     width: 25%;
     justify-content: flex-start;
-}
+`;
 
-.navDivB {
+const NavDivB = styled.nav`
     width: 25%;
-}
+`;
 
-.navDivC {
+const NavDivC = styled.nav`
     width: 25%;
-}
+`;
 
-.navDivD {
+const NavDivD = styled.nav`
     display: flex;
     width: 25%;
     justify-content: flex-end;
-}
+`;
 
-.mainButton {
+const MainButton = styled.button`
     display: flex;
     width: 100%;
-
     padding-left: 10%;
     padding-right: 10%;
     font-size: 22pt;
@@ -46,17 +39,16 @@
     color: #010101;
     border: none;
     background-color: none;
-
     justify-content: center;
     align-items: center;
-}
 
-.mainButton:hover {
-    cursor: pointer;
-    text-shadow: 0px 0px 6px #919191;
-}
+    &:hover {
+        cursor: pointer;
+        text-shadow: 0px 0px 6px #919191;  
+    }
+`;
 
-.logoutButton {
+const LogoutButton = styled.button`
     padding-left: 10%;
     padding-right: 10%;
     font-size: 12pt;
@@ -67,46 +59,36 @@
     border: none;
     border-radius: 5px;
     margin: 0.3rem;
-
     border-width: 2px;
     border-style: solid;
     border-color: #000000;
-
     box-shadow: -3px 3px 0px black;
     border-radius: 10px;
-}
 
-.logoutButton:hover {
-    cursor: pointer;
-    background-color: #696969;
-}
+    &:hover {
+        cursor: pointer;
+        background-color: #696969;
+    }
+`;
 
-.content {
+const Content = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     height: calc(100vh - 50px);
-}
+`;
 
-.asideContent {
-    width: 20%;
-}
+const AsideContent = styled.aside`
+    width: 250px;
+`;
 
-.mainContent {
-    width: 60%;
-    overflow-y: auto;
-}
-
-.mainContent::-webkit-scrollbar {
-    display: none;
-  }
-
-.asideRight {
-    width: 20%;
-}
-
-.postContent {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+export {
+    NavContainer,
+    NavDivA,
+    NavDivB,
+    NavDivC,
+    NavDivD,
+    MainButton,
+    LogoutButton,
+    Content,
+    AsideContent
 }
