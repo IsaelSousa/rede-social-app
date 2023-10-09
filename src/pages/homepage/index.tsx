@@ -50,18 +50,12 @@ export default function HomePage() {
       });
   }
 
-  useEffect(() => {
-    console.log(post);
-  }, [post]);
+  useEffect(() => handleGetPostData(), []);
 
   useEffect(() => {
     const value = data;
     setPost(value ? value['data'] : []);
   }, [data]);
-
-  useEffect(() => {
-    handleGetPostData();
-  }, []);
 
   return (
     <main className={styles.main}>

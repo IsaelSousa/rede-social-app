@@ -45,6 +45,8 @@ const PostMsg = styled.p`
     margin-top: 0.5rem;
     font-family: 'kanit';  
     color: #000;
+    padding-right: 1rem;
+    padding-left: 1rem;
 `;
 
 const ImageContainer = styled.div`
