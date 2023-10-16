@@ -1,7 +1,9 @@
 import { Post } from '@/models/types';
 import React, { useEffect, useState } from 'react';
 import { Base64Image } from '../Base64Image/Base64Image';
-import { Container, Content, ImageContainer, PostDateContainer, PostMsg, PostP } from './styles';
+import { Button, ButtonsContainer, Container, Content, ImageContainer, PostDateContainer, PostMsg, PostP } from './styles';
+import { AiFillLike } from 'react-icons/ai';
+import { BiSolidCommentDetail } from 'react-icons/bi';
 
 type PostComponentProps = {
     post: Post;
@@ -61,6 +63,15 @@ export const PostComponent = (props: PostComponentProps) => {
                     </div>
                 )
             }
+            <ButtonsContainer>
+                <Button>
+                    <AiFillLike size={30} />
+                </Button>
+                <Button>
+                    <BiSolidCommentDetail size={30} />
+                </Button>
+            </ButtonsContainer>
+
         </Container>
     )
 }
