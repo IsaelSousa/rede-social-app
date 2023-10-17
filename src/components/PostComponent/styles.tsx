@@ -59,6 +59,7 @@ const ButtonsContainer = styled.div`
     display: flex;
     width: 100%;
     flex-direction: row;
+    border-radius: 10px;
 `;
 
 const Button = styled.button`
@@ -68,11 +69,16 @@ const Button = styled.button`
     margin: 0.1%;
     justify-content: center;
     align-items: center;
+    transition: transform 0.2s ease;
 
     &:hover {
         cursor: pointer;
         border-radius: 50px;
         background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    &:active {
+        transform: translateY(-10px);
     }
 `;
 
