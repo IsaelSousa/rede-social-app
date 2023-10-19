@@ -16,8 +16,6 @@ const Label = styled.label`
 const Input = styled.input`
     padding-top: 0.8rem;
     padding-bottom: 0.8rem;
-    padding-left: 10%;
-    padding-right: 10%;
     margin: 0.5rem;
     text-align: center;
 

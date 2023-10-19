@@ -55,6 +55,7 @@ export default function Friends() {
                 </aside>
                 <div className={styles.mainContent}>
                     <Container>
+                        <div>
                         <TextInput
                             text={input}
                             setText={(e) => setInput(e)}
@@ -62,6 +63,10 @@ export default function Friends() {
                             label='Add Friend'
                         />
                         <MenuButton title='Send Request' icon={<BiSolidUser size={25} />} />
+                        </div>
+                        <div>
+
+                        </div>
                     </Container>
                 </div>
                 <div className={styles.asideRight}></div>
