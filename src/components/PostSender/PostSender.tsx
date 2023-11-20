@@ -6,9 +6,9 @@ import { MdPublish } from 'react-icons/Md';
 import { ImageRenderer } from '../ImageRenderer/ImageRenderer';
 import { toast } from 'react-toastify';
 import { getPost, sendPost } from '@/services/api';
-import CryptoJS from 'crypto-js';
 import { useDispatch } from '@/context/provider';
 import { ButtonContainer, Container, Divider, TextAreaStyled, Title } from './styles';
+import { Utils } from '@/shared/utils/utils';
 
 export const PostSender = () => {
     const [selectedImage, setSelectedImage] = useState<string>();
@@ -71,13 +71,7 @@ export const PostSender = () => {
                 PostMessage: post
             }
 
-            const key = process.env.NEXT_PUBLIC_APP_ENCRYPTED_KEY;
-            if (key) {
-                const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(postData), CryptoJS.enc.Utf8.parse(key), {
-                    padding: CryptoJS.pad.Pkcs7,
-                    mode: CryptoJS.mode.ECB
-                });
-                const hash = encryptedData.toString();
+            const hash = Utils.EncryptData(postData);
                 sendPost(hash)
                 .subscribe({
                     complete: () => {
@@ -86,10 +80,8 @@ export const PostSender = () => {
                         setSelectedImageToApi('');
                         handleGetData();
                     },
-                    error: (err) => {
-                    },
+                    error: (err) => {},
                 });
-            }
         } else {
             toast.error('Say something before of publish.', {
                 position: "top-right",

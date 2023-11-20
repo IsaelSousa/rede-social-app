@@ -10,6 +10,8 @@ import TextInput from '@/components/TextInput/TextInput';
 import { MenuButton } from '@/components/MenuButton/MenuButton';
 import { BiSolidUser } from 'react-icons/bi';
 import { Container } from './styles';
+import { inviteFriend } from '@/services/api';
+import { Utils } from '@/shared/utils/utils';
 
 export default function Friends() {
 
@@ -25,6 +27,22 @@ export default function Friends() {
         router.push('/');
         axios.defaults.headers.common['Authorization'] = undefined;
         Cookies.remove(CookiesEnum.Auth);
+    }
+
+    const sendInvite = () => {
+        const data = {
+            UserId: "",
+            FriendUserName: input
+        };
+        const hash = Utils.EncryptData(data);
+        inviteFriend(hash)
+        .subscribe({
+            complete: () => {},
+            next: (data: any) => {
+                console.log(data)
+            },
+            error: () => {}
+        });
     }
 
     return (
@@ -56,17 +74,19 @@ export default function Friends() {
                 <div className={styles.mainContent}>
                     <Container>
                         <div>
-                        <TextInput
-                            text={input}
-                            setText={(e) => setInput(e)}
-                            placeholder="Friend 'UserName'"
-                            label='Add Friend'
-                        />
-                        <MenuButton title='Send Request' icon={<BiSolidUser size={25} />} />
+                            <TextInput
+                                text={input}
+                                setText={(e) => setInput(e)}
+                                placeholder="Friend 'UserName'"
+                                label='Add Friend'
+                            />
+                            <MenuButton
+                            title='Send Request'
+                            icon={<BiSolidUser size={25} />}
+                            onClick={() => sendInvite()}
+                            />
                         </div>
-                        <div>
-
-                        </div>
+                        <div></div>
                     </Container>
                 </div>
                 <div className={styles.asideRight}></div>
