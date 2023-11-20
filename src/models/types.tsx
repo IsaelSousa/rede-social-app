@@ -1,3 +1,10 @@
+
+export type ResponseData = {
+    message: string;
+    status: boolean;
+    data: any;
+}
+
 export type User = {
     userName: string;
     password: string;

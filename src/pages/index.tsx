@@ -1,19 +1,10 @@
 import Head from 'next/head';
 import styles from './styles.module.css';
 import { useRouter } from 'next/router';
-import { ActualUser, User } from '@/models/types';
+import { User } from '@/models/types';
 import { useState } from 'react';
-import { loginUser } from '@/services/api';
-import { toast } from 'react-toastify';
-import CryptoJS from 'crypto-js';
-import axios from 'axios';
 import { useDispatch } from '@/context/provider';
 import { authentication } from '@/services/authenticationService';
-
-type Response = {
-  message: any;
-  status: boolean;
-}
 
 export default function Home() {
 

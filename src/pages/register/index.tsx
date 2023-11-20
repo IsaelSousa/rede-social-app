@@ -1,16 +1,11 @@
 import Head from 'next/head';
 import styles from './styles.module.css';
 import { useState } from 'react';
-import { User } from '../../models/types';
+import { ResponseData, User } from '../../models/types';
 import CryptoJS from 'crypto-js';
 import { registerUser } from '../../services/api';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
-
-type Response = {
-    message: any;
-    status: boolean;
-}
 
 export default function Register() {
     const [user, setUser] = useState<User>({
@@ -46,8 +41,9 @@ export default function Register() {
 
                     },
                     error: (err) => console.log(err),
-                    next(value) {
-                        const data = value as Response;
+                    next(value: any) {
+                        const data = value as ResponseData;
+                        console.log('data error2', value);
                         if (data.status == false) {
                             toast.error('Error to register user.', {
                                 position: "top-right",

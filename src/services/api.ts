@@ -1,4 +1,4 @@
-import { CookiesEnum } from '@/models/types';
+import { CookiesEnum, ResponseData } from '@/models/types';
 import axios from 'axios';
 import { Observable } from 'rxjs';
 import Cookies from 'js-cookie';
@@ -19,7 +19,7 @@ export const registerUser = (data: string) => {
             }
         })
         .then((resp) => {
-            subscriber.next(resp.data["data"]);
+            subscriber.next(resp.data);
             subscriber.complete();
         })
         .catch((err) => subscriber.error(err));
@@ -86,6 +86,23 @@ export const validationToken = () => {
         })
         .then((resp) => {
             subscriber.next(resp.status);
+            subscriber.complete();
+        })
+        .catch((err) => subscriber.error(err));
+    });
+}
+
+export const inviteFriend = (data: string): Observable<ResponseData> => {
+    return new Observable((subscriber) => {
+        const axiosInstance = createAxiosInstance();
+        axiosInstance.post('Friend/Invite', data, {
+            headers: {
+                'Content-Type': 'text/plain',
+                Authorization: Cookies.get(CookiesEnum.Auth)
+            }
+        })
+        .then((resp) => {
+            subscriber.next(resp.data as ResponseData);
             subscriber.complete();
         })
         .catch((err) => subscriber.error(err));
