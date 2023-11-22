@@ -1,21 +1,22 @@
 import { HeadLinksComponent } from '@/components/shared/HeadLinksComponent/HeadLinksComponent';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './styles.module.css';
 import { AsideMenu } from '@/components/AsideMenu/AsideMenu';
 import router from 'next/router';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { CookiesEnum } from '@/models/types';
+import { CookiesEnum, ResponseData } from '@/models/types';
 import TextInput from '@/components/TextInput/TextInput';
 import { MenuButton } from '@/components/MenuButton/MenuButton';
 import { BiSolidUser } from 'react-icons/bi';
 import { Container } from './styles';
-import { inviteFriend } from '@/services/api';
+import { getRequestInvite, inviteFriend } from '@/services/api';
 import { Utils } from '@/shared/utils/utils';
 
 export default function Friends() {
 
     const [input, setInput] = useState<string>('');
+    const [requestsInvite, setRequestsInvite] = useState<string>('');
 
     const handleHomePage = () => {
         if (router.asPath != '/homepage') {
@@ -44,6 +45,20 @@ export default function Friends() {
             error: () => {}
         });
     }
+
+    const listRequest = () => {
+        getRequestInvite()
+        .subscribe({
+            complete: () => {},
+            next: (resp) => {
+                console.log('a', resp as ResponseData);
+            }
+        })
+    }
+
+    useEffect(() => {
+        listRequest();
+    }, []);
 
     return (
         <main>

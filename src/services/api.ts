@@ -108,3 +108,15 @@ export const inviteFriend = (data: string): Observable<ResponseData> => {
         .catch((err) => subscriber.error(err));
     });
 }
+
+export const getRequestInvite = () => {
+    return new Observable((subscriber) => {
+        const axiosInstance = createAxiosInstance();
+        axiosInstance.get('Friend/PendentInvite')
+        .then((resp) => {
+            subscriber.next(resp.data as ResponseData);
+            subscriber.complete();
+        })
+        .catch((err) => subscriber.error(err));
+    });
+}
