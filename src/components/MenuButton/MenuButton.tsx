@@ -8,7 +8,6 @@ type MenuButtonType = {
 } 
 
 export const MenuButton = (props: MenuButtonType) => {
-    
     return (
         <Container onClick={props.onClick}>
             { props.icon && <Icon>{props.icon}</Icon> }

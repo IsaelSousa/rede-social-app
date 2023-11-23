@@ -29,6 +29,8 @@
 .mainContent {
     width: 60%;
     overflow-y: auto;
+    display: flex;
+    justify-content: center;
 }
 
 .asideRight {

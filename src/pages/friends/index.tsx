@@ -37,23 +37,23 @@ export default function Friends() {
         };
         const hash = Utils.EncryptData(data);
         inviteFriend(hash)
-        .subscribe({
-            complete: () => {},
-            next: (data: any) => {
-                console.log(data)
-            },
-            error: () => {}
-        });
+            .subscribe({
+                complete: () => { },
+                next: (data: any) => {
+                    console.log(data)
+                },
+                error: () => { }
+            });
     }
 
     const listRequest = () => {
         getRequestInvite()
-        .subscribe({
-            complete: () => {},
-            next: (resp) => {
-                console.log('a', resp as ResponseData);
-            }
-        })
+            .subscribe({
+                complete: () => { },
+                next: (resp) => {
+                    console.log('a', resp as ResponseData);
+                }
+            })
     }
 
     useEffect(() => {
@@ -87,23 +87,35 @@ export default function Friends() {
                     <AsideMenu />
                 </aside>
                 <div className={styles.mainContent}>
-                    <Container>
-                        <div>
-                            <TextInput
-                                text={input}
-                                setText={(e) => setInput(e)}
-                                placeholder="Friend 'UserName'"
-                                label='Add Friend'
-                            />
-                            <MenuButton
+                    <div style={{ width: '30%', display: 'flex', flexDirection: 'column' }}>
+                        <TextInput
+                            text={input}
+                            setText={(e) => setInput(e)}
+                            placeholder="Friend 'UserName'"
+                            label='Add Friend'
+                        />
+                        <MenuButton
                             title='Send Request'
                             icon={<BiSolidUser size={25} />}
                             onClick={() => sendInvite()}
-                            />
-                        </div>
-                        <div></div>
-                    </Container>
+                        />
+                    </div>
                 </div>
+                {/* <div className={styles.mainContent}>
+                    <div style={{ width: '30%', display: 'flex', flexDirection: 'column' }}>
+                        <TextInput
+                            text={input}
+                            setText={(e) => setInput(e)}
+                            placeholder="Friend 'UserName'"
+                            label='Add Friend'
+                        />
+                        <MenuButton
+                            title='Send Request'
+                            icon={<BiSolidUser size={25} />}
+                            onClick={() => sendInvite()}
+                        />
+                    </div>
+                </div> */}
                 <div className={styles.asideRight}></div>
             </div>
         </main>

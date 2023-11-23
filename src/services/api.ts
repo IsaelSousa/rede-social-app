@@ -18,11 +18,11 @@ export const registerUser = (data: string) => {
                 'Content-Type': 'text/plain'
             }
         })
-        .then((resp) => {
-            subscriber.next(resp.data);
-            subscriber.complete();
-        })
-        .catch((err) => subscriber.error(err));
+            .then((resp) => {
+                subscriber.next(resp.data);
+                subscriber.complete();
+            })
+            .catch((err) => subscriber.error(err));
     });
 }
 
@@ -34,12 +34,12 @@ export const loginUser = (data: string) => {
                 'Content-Type': 'text/plain',
             }
         })
-        .then((resp) => {
-            const data = resp.data;
-            subscriber.next(data);
-            subscriber.complete();
-        })
-        .catch((err) => subscriber.error(err));
+            .then((resp) => {
+                const data = resp.data;
+                subscriber.next(data);
+                subscriber.complete();
+            })
+            .catch((err) => subscriber.error(err));
     });
 }
 
@@ -52,11 +52,11 @@ export const sendPost = (data: string) => {
                 Authorization: Cookies.get(CookiesEnum.Auth)
             }
         })
-        .then((resp) => {
-            subscriber.next(resp.data["data"]);
-            subscriber.complete();
-        })
-        .catch((err) => subscriber.error(err));
+            .then((resp) => {
+                subscriber.next(resp.data["data"]);
+                subscriber.complete();
+            })
+            .catch((err) => subscriber.error(err));
     });
 }
 
@@ -68,11 +68,11 @@ export const getPost = (data?: string) => {
                 'Authorization': Cookies.get(CookiesEnum.Auth)
             }
         })
-        .then((resp) => {
-            subscriber.next(resp.data["data"]);
-            subscriber.complete();
-        })
-        .catch((err) => subscriber.error(err));
+            .then((resp) => {
+                subscriber.next(resp.data["data"]);
+                subscriber.complete();
+            })
+            .catch((err) => subscriber.error(err));
     });
 }
 
@@ -84,11 +84,11 @@ export const validationToken = () => {
                 'Authorization': Cookies.get(CookiesEnum.Auth)
             }
         })
-        .then((resp) => {
-            subscriber.next(resp.status);
-            subscriber.complete();
-        })
-        .catch((err) => subscriber.error(err));
+            .then((resp) => {
+                subscriber.next(resp.status);
+                subscriber.complete();
+            })
+            .catch((err) => subscriber.error(err));
     });
 }
 
@@ -101,22 +101,27 @@ export const inviteFriend = (data: string): Observable<ResponseData> => {
                 Authorization: Cookies.get(CookiesEnum.Auth)
             }
         })
-        .then((resp) => {
-            subscriber.next(resp.data as ResponseData);
-            subscriber.complete();
-        })
-        .catch((err) => subscriber.error(err));
+            .then((resp) => {
+                subscriber.next(resp.data as ResponseData);
+                subscriber.complete();
+            })
+            .catch((err) => subscriber.error(err));
     });
 }
 
 export const getRequestInvite = () => {
     return new Observable((subscriber) => {
         const axiosInstance = createAxiosInstance();
-        axiosInstance.get('Friend/PendentInvite')
-        .then((resp) => {
-            subscriber.next(resp.data as ResponseData);
-            subscriber.complete();
+        axiosInstance.get('Friend/PendentInvite', {
+            headers: {
+                'Content-Type': 'text/plain',
+                Authorization: Cookies.get(CookiesEnum.Auth)
+            }
         })
-        .catch((err) => subscriber.error(err));
+            .then((resp) => {
+                subscriber.next(resp.data as ResponseData);
+                subscriber.complete();
+            })
+            .catch((err) => subscriber.error(err));
     });
 }
