@@ -110,7 +110,7 @@ export const inviteFriend = (data: string): Observable<ResponseData> => {
 }
 
 export const getRequestInvite = () => {
-    return new Observable((subscriber) => {
+    return new Observable<ResponseData>((subscriber) => {
         const axiosInstance = createAxiosInstance();
         axiosInstance.get('Friend/PendentInvite', {
             headers: {

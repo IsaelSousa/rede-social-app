@@ -1,8 +1,7 @@
-
-export type ResponseData = {
+export interface ResponseData<T = any> {
     message: string;
     status: boolean;
-    data: any;
+    data?: T;
 }
 
 export type User = {
@@ -28,6 +27,11 @@ export type Post = {
     image: string;
     createdAt: Date;
     lastUpdated: Date;
+}
+
+export type FriendList = {
+    userName: string;
+    createdAt: string;
 }
 
 export enum CookiesEnum {
