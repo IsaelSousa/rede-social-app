@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { ResponseData, User } from '../../models/types';
 import CryptoJS from 'crypto-js';
 import { registerUser } from '../../services/api';
-import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
+import { Notification } from '@/shared/utils/notification';
 
 export default function Register() {
     const [user, setUser] = useState<User>({
@@ -37,35 +37,15 @@ export default function Register() {
             const hash = encryptedData.toString();
             registerUser(hash.toString())
                 .subscribe({
-                    complete: () => {
-
-                    },
+                    complete: () => {},
                     error: (err) => console.log(err),
                     next(value: any) {
                         const data = value as ResponseData;
                         console.log('data error2', value);
                         if (data.status == false) {
-                            toast.error('Error to register user.', {
-                                position: "top-right",
-                                autoClose: 5000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                                theme: "light",
-                            });
-                        } else {                           
-                            toast.success('Registered with sucess!', {
-                                position: "top-right",
-                                autoClose: 5000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                                theme: "light",
-                            });
+                            Notification.Error('Error to register user.');
+                        } else {        
+                            Notification.Success('Registered with success!')                   
                         }
 
                     },

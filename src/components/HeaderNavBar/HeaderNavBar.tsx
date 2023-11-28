@@ -6,7 +6,12 @@ import Cookies from 'js-cookie';
 import { CookiesEnum, FriendList, ResponseData } from '@/models/types';
 import Modal from 'react-modal';
 import { RowItems } from './components/RowItems';
-import { getRequestInvite } from '@/services/api';
+import { getRequestInvite, inviteFriend } from '@/services/api';
+import TextInput from '../TextInput/TextInput';
+import { MenuButton } from '../MenuButton/MenuButton';
+import { BiSolidUser } from 'react-icons/bi';
+import { Utils } from '@/shared/utils/utils';
+import { Notification } from '@/shared/utils/notification';
 
 type HeaderNavBarProps = {
     initialButton?: () => void;
@@ -37,11 +42,30 @@ export const HeaderNavBar: React.FC<HeaderNavBarProps> = ({ initialButton }) => 
         }
     }
 
+    const [input, setInput] = useState<string>('');
+
+    const sendInvite = () => {
+        const data = {
+            UserId: "",
+            FriendUserName: input
+        };
+        const hash = Utils.EncryptData(data);
+        inviteFriend(hash)
+            .subscribe({
+                complete: () => { },
+                next: (data: any) => {
+                    Notification.Success(data['message']);
+                 },
+                error: () => Notification.Error('Error to send invite')
+            });
+    }
+
+
     useEffect(() => {
         getRequestInvite()
-        .subscribe({
-           next: (value: ResponseData<Array<FriendList>>) => value.data ? setData(value.data) : []
-        })
+            .subscribe({
+                next: (value: ResponseData<Array<FriendList>>) => value.data ? setData(value.data) : []
+            })
     }, []);
 
     return (
@@ -57,9 +81,9 @@ export const HeaderNavBar: React.FC<HeaderNavBarProps> = ({ initialButton }) => 
             <div className={styles.navDivC}>
             </div>
             <div className={styles.navDivD}>
-                <button 
-                onClick={onComplete}
-                className={styles.logoutButton}
+                <button
+                    onClick={onComplete}
+                    className={styles.logoutButton}
                 >
                     Friends
                 </button>
@@ -80,17 +104,30 @@ export const HeaderNavBar: React.FC<HeaderNavBarProps> = ({ initialButton }) => 
                         right: 0,
                         bottom: 0,
                         backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                      },
-                      content: {
+                    },
+                    content: {
                         position: 'absolute',
                         top: '50%',
                         left: '50%',
                         transform: 'translate(-50%, -50%)',
                         padding: '20px',
-                      }
+                    }
                 }}
             >
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
+                    <TextInput
+                        text={input}
+                        setText={(e) => setInput(e)}
+                        placeholder="Friend 'UserName'"
+                    />
+                    <MenuButton
+                        title='Send Request'
+                        icon={<BiSolidUser size={25} />}
+                        onClick={() => sendInvite()}
+                    />
+                </div>
                 <RowItems data={data} />
+
             </Modal>
         </nav>
     );
