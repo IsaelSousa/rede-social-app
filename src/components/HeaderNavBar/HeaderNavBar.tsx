@@ -12,6 +12,9 @@ import { MenuButton } from '../MenuButton/MenuButton';
 import { BiSolidUser } from 'react-icons/bi';
 import { Utils } from '@/shared/utils/utils';
 import { Notification } from '@/shared/utils/notification';
+import { FaUserFriends } from 'react-icons/fa';
+import { FaPersonCirclePlus } from 'react-icons/fa6';
+import Tooltip from '@mui/material/Tooltip';
 
 type HeaderNavBarProps = {
     initialButton?: () => void;
@@ -21,6 +24,8 @@ export const HeaderNavBar: React.FC<HeaderNavBarProps> = ({ initialButton }) => 
 
     const [modalIsOpen, setIsOpen] = useState<boolean>(false);
     const [data, setData] = useState<Array<FriendList>>([]);
+    const [input, setInput] = useState<string>('');
+    const [changeStatus, setChangeStatus] = useState<boolean>(false);
 
     const onClose = () => setIsOpen(false);
 
@@ -42,8 +47,6 @@ export const HeaderNavBar: React.FC<HeaderNavBarProps> = ({ initialButton }) => 
         }
     }
 
-    const [input, setInput] = useState<string>('');
-
     const sendInvite = () => {
         const data = {
             UserId: "",
@@ -55,18 +58,26 @@ export const HeaderNavBar: React.FC<HeaderNavBarProps> = ({ initialButton }) => 
                 complete: () => { },
                 next: (data: any) => {
                     Notification.Success(data['message']);
-                 },
+                },
                 error: () => Notification.Error('Error to send invite')
             });
     }
 
-
-    useEffect(() => {
+    const handleGetRequest = () => {
         getRequestInvite()
             .subscribe({
                 next: (value: ResponseData<Array<FriendList>>) => value.data ? setData(value.data) : []
-            })
-    }, []);
+            });
+    }
+
+    useEffect(() => {
+        if (changeStatus) handleGetRequest();
+    }, [changeStatus]);
+
+    useEffect(() => {
+        if (modalIsOpen) handleGetRequest();
+        if (!modalIsOpen) setData([]);
+    }, [modalIsOpen]);
 
     return (
         <nav className={styles.nav}>
@@ -76,17 +87,28 @@ export const HeaderNavBar: React.FC<HeaderNavBarProps> = ({ initialButton }) => 
                     onClick={handleHomePage}>
                     Social Network
                 </button>
-            </div>
+            </div>j
             <div className={styles.navDivB}></div>
             <div className={styles.navDivC}>
             </div>
             <div className={styles.navDivD}>
-                <button
-                    onClick={onComplete}
-                    className={styles.logoutButton}
-                >
-                    Friends
-                </button>
+                <Tooltip title='Add Friend'>
+                    <button
+                        onClick={onComplete}
+                        className={styles.buttonIcon}
+                    >
+                        <FaPersonCirclePlus size={20} />
+                    </button>
+                </Tooltip>
+
+                <Tooltip title='List Users'>
+                    <button
+                        className={styles.buttonIcon}
+                    >
+                        <FaUserFriends size={20} />
+                    </button>
+                </Tooltip>
+
                 <button
                     className={styles.logoutButton}
                     onClick={handleLogout}>

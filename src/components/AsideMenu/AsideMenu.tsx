@@ -47,7 +47,6 @@ export const AsideMenu = () => {
         <Container>
             <MenuButton title="Feed" icon={<MdFeed size={30} />} onClick={() => handleNavigate('homepage')} />
             <MenuButton title="Chat" icon={<BsFillChatTextFill size={25} />} />
-            <MenuButton title="Friends" icon={<FaUserFriends size={25} />} onClick={() => handleNavigate('friends')} />
             <MenuButton title="Profile" icon={<CgProfile size={25} />} onClick={() => handleNavigate('profile')} />
             <MenuButton title="Configuration" icon={<BsWrenchAdjustableCircleFill size={25} />} />
         </Container>

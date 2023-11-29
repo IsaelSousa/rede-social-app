@@ -1,32 +1,49 @@
 import { FriendList } from '@/models/types';
 import { acceptRequest } from '@/services/api';
 import { Utils } from '@/shared/utils/utils';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Notification } from '@/shared/utils/notification';
 
 type RowItemsProps = {
     data: Array<FriendList>;
+    onAcceptStatus?: (status: boolean) => void;
+}
+
+type Payload = {
+    userName: string;
+    id: string;
 }
 
 export const RowItems: React.FC<RowItemsProps> = ({ data }) => {
 
-    const handleOnClick = (data: string) => {
-        acceptRequest(Utils.EncryptData(data))
+    const [items, setItems] = useState<Array<FriendList>>(data ?? []);
+
+    const handleOnClick = (userName: string) => {
+        const payload: Payload = {
+            userName: userName,
+            id: ''
+        }
+
+        acceptRequest(Utils.EncryptData(payload))
         .subscribe({
-            complete: () => {},
+            complete: () => {
+                setItems((prev) => prev.filter((user) => user.userName !== userName))
+            },
             error: () => Notification.Error('Error to accept request.'),
             next: () => {}
         })
     }
 
+    useEffect(() => setItems(data), [data]);
+
     return (
         <Container>
             <h1 style={{ fontFamily: 'Kanit' }}>Friends</h1>
-            {data.map((vl, idx) => (
+            {items.map((vl, idx) => (
               <HeaderComponent key={idx}>
                 {vl.userName}
-                <ButtonAccept onClick={() => {}}>
+                <ButtonAccept onClick={() => handleOnClick(vl.userName)}>
                     Accept
                 </ButtonAccept>
               </HeaderComponent>  
