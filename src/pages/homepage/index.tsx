@@ -1,36 +1,20 @@
 import { HeadLinksComponent } from '@/components/shared/HeadLinksComponent/HeadLinksComponent';
 import styles from './styles.module.css';
-import { useRouter } from 'next/router';
 import { AsideMenu } from '@/components/AsideMenu/AsideMenu';
 import { PostSender } from '@/components/PostSender/PostSender';
-import axios from 'axios';
 import { getPost } from '@/services/api';
 import { useEffect, useState } from 'react';
-import { CookiesEnum, Post } from '@/models/types';
+import { Post } from '@/models/types';
 import { PostComponent } from '@/components/PostComponent/PostComponent';
 import { useDispatch, useSelector } from '@/context/provider';
 import { Loader } from '@/components/Loader/Loader';
-import Cookies from 'js-cookie';
+import { HeaderNavBar } from '@/components/HeaderNavBar/HeaderNavBar';
 
 export default function HomePage() {
   const [post, setPost] = useState<Array<Post>>([]);
   const { data, loader } = useSelector((store) => { return store });
 
-  const router = useRouter();
   const dispatch = useDispatch();
-
-  const handleLogout = () => {
-    router.push('/');
-    axios.defaults.headers.common['Authorization'] = undefined;
-    Cookies.remove(CookiesEnum.Auth);
-  }
-
-  const handleHomePage = () => {
-    if (router.asPath != "/homepage") {
-      router.push('/homepage');
-    }
-    handleGetPostData();
-  }
 
   const handleGetPostData = () => {
     getPost()
@@ -60,24 +44,7 @@ export default function HomePage() {
   return (
     <main className={styles.main}>
       <HeadLinksComponent title='HomePage' />
-      <nav className={styles.nav}>
-        <div className={styles.navDivA}>
-          <button
-            className={styles.mainButton}
-            onClick={handleHomePage}>
-            Social Network
-          </button>
-        </div>
-        <div className={styles.navDivB}></div>
-        <div className={styles.navDivC}></div>
-        <div className={styles.navDivD}>
-          <button
-            className={styles.logoutButton}
-            onClick={handleLogout}>
-            Logout
-          </button>
-        </div>
-      </nav>
+      <HeaderNavBar initialButton={() => handleGetPostData()} />
 
       <div className={styles.content}>
         <aside className={styles.asideContent}>

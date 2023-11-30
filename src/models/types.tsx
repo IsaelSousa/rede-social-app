@@ -1,3 +1,9 @@
+export interface ResponseData<T = any> {
+    message: string;
+    status: boolean;
+    data?: T;
+}
+
 export type User = {
     userName: string;
     password: string;
@@ -21,6 +27,11 @@ export type Post = {
     image: string;
     createdAt: Date;
     lastUpdated: Date;
+}
+
+export type FriendList = {
+    userName: string;
+    createdAt: string;
 }
 
 export enum CookiesEnum {

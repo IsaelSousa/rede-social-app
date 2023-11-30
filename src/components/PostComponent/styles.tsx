@@ -55,11 +55,40 @@ const ImageContainer = styled.div`
     position: relative;
 `;
 
+const ButtonsContainer = styled.div`
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    border-radius: 10px;
+`;
+
+const Button = styled.button`
+    border: none;
+    background-color: inherit;
+    padding: 1.5%;
+    margin: 0.1%;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease;
+
+    &:hover {
+        cursor: pointer;
+        border-radius: 50px;
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    &:active {
+        transform: translateY(-10px);
+    }
+`;
+
 export {
     Container,
     PostDateContainer,
     PostP,
     Content,
     PostMsg,
-    ImageContainer
+    ImageContainer,
+    ButtonsContainer,
+    Button
 };

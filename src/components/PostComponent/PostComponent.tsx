@@ -1,7 +1,9 @@
 import { Post } from '@/models/types';
 import React, { useEffect, useState } from 'react';
 import { Base64Image } from '../Base64Image/Base64Image';
-import { Container, Content, ImageContainer, PostDateContainer, PostMsg, PostP } from './styles';
+import { Button, ButtonsContainer, Container, Content, ImageContainer, PostDateContainer, PostMsg, PostP } from './styles';
+import { AiFillLike } from 'react-icons/ai';
+import { BiSolidCommentDetail, BiShare } from 'react-icons/bi';
 
 type PostComponentProps = {
     post: Post;
@@ -18,17 +20,15 @@ export const PostComponent = (props: PostComponentProps) => {
             const dateSplited = d.toISOString().split('T');
             const fullDate = dateSplited[0];
             const time = dateSplited[1].replace('Z', '').substring(0, 8);
-            return `${fullDate} ${time}`;
+            return `${fullDate.replaceAll('-', '/')} ${time}`;
         } else {
             return '';
         }
     }
 
     useEffect(() => {
-
         setWidth(window.innerWidth.toString());
         setHeight(window.innerHeight.toString());
-
     }, [window.innerWidth, window.innerHeight]);
 
     return (
@@ -61,6 +61,18 @@ export const PostComponent = (props: PostComponentProps) => {
                     </div>
                 )
             }
+            <ButtonsContainer>
+                <Button>
+                    <AiFillLike size={25} />
+                </Button>
+                <Button>
+                    <BiSolidCommentDetail size={25} />
+                </Button>
+                <Button>
+                    <BiShare size={25} />
+                </Button>
+            </ButtonsContainer>
+
         </Container>
     )
 }

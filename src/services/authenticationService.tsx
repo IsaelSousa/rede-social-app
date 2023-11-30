@@ -1,16 +1,10 @@
-import { ActualUser, CookiesEnum, User } from '@/models/types';
+import { ActualUser, CookiesEnum, ResponseData, User } from '@/models/types';
 import { loginUser } from './api';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { NextRouter } from 'next/router';
 import CryptoJS from 'crypto-js';
 import Cookies from 'js-cookie';
-
-type Response = {
-  message: any;
-  data: DataResult;
-  status: boolean;
-}
 
 type DataResult = {
   token: string;
@@ -44,7 +38,7 @@ export const authentication = (user: User, router: NextRouter, dispatch: any) =>
               reject(err);
             },
             next(value) {
-              const result = value as Response;
+              const result = value as ResponseData;
 
               if (result.status == false) {
                 toast.error(result.message, {
