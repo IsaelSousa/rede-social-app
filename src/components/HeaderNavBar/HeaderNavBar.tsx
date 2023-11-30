@@ -5,8 +5,8 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { CookiesEnum, FriendList, ResponseData } from '@/models/types';
 import Modal from 'react-modal';
-import { RowItems } from './components/RowItems';
-import { getRequestInvite, inviteFriend } from '@/services/api';
+import { RowInvites } from './components/RowInvites';
+import { getAllInvites, getRequestInvite, inviteFriend } from '@/services/api';
 import TextInput from '../TextInput/TextInput';
 import { MenuButton } from '../MenuButton/MenuButton';
 import { BiSolidUser } from 'react-icons/bi';
@@ -15,6 +15,8 @@ import { Notification } from '@/shared/utils/notification';
 import { FaUserFriends } from 'react-icons/fa';
 import { FaPersonCirclePlus } from 'react-icons/fa6';
 import Tooltip from '@mui/material/Tooltip';
+import { ButtonData } from './components/ButtonComponent';
+import { RowAllFriends } from './components/RowAllFriends';
 
 type HeaderNavBarProps = {
     initialButton?: () => void;
@@ -23,13 +25,18 @@ type HeaderNavBarProps = {
 export const HeaderNavBar: React.FC<HeaderNavBarProps> = ({ initialButton }) => {
 
     const [modalIsOpen, setIsOpen] = useState<boolean>(false);
+    const [modalIsOpenListFriends, setIsOpenListFriends] = useState<boolean>(false);
     const [data, setData] = useState<Array<FriendList>>([]);
+    const [friends, setFriends] = useState<Array<FriendList>>([]);
     const [input, setInput] = useState<string>('');
-    const [changeStatus, setChangeStatus] = useState<boolean>(false);
 
     const onClose = () => setIsOpen(false);
-
+    
     const onComplete = () => setIsOpen(true);
+    
+    const onCloseListFriends = () => setIsOpenListFriends(false);
+
+    const onCompleteListFriends = () => setIsOpenListFriends(true);
 
     const handleLogout = () => {
         router.push('/');
@@ -70,14 +77,22 @@ export const HeaderNavBar: React.FC<HeaderNavBarProps> = ({ initialButton }) => 
             });
     }
 
-    useEffect(() => {
-        if (changeStatus) handleGetRequest();
-    }, [changeStatus]);
+    const handleGetAllFriendsList = () => {
+        getAllInvites()
+        .subscribe({
+            next: (value: ResponseData<Array<FriendList>>) => value.data ? setFriends(value.data) : []
+        })
+    }
 
     useEffect(() => {
         if (modalIsOpen) handleGetRequest();
         if (!modalIsOpen) setData([]);
     }, [modalIsOpen]);
+
+    useEffect(() => {
+        if (modalIsOpenListFriends) handleGetAllFriendsList();
+        if (!modalIsOpenListFriends) setFriends([]);
+    }, [modalIsOpenListFriends]);
 
     return (
         <nav className={styles.nav}>
@@ -87,27 +102,22 @@ export const HeaderNavBar: React.FC<HeaderNavBarProps> = ({ initialButton }) => 
                     onClick={handleHomePage}>
                     Social Network
                 </button>
-            </div>j
-            <div className={styles.navDivB}></div>
-            <div className={styles.navDivC}>
             </div>
+            <div className={styles.navDivB}></div>
+            <div className={styles.navDivC}></div>
             <div className={styles.navDivD}>
-                <Tooltip title='Add Friend'>
-                    <button
-                        onClick={onComplete}
-                        className={styles.buttonIcon}
-                    >
-                        <FaPersonCirclePlus size={20} />
-                    </button>
-                </Tooltip>
 
-                <Tooltip title='List Users'>
-                    <button
-                        className={styles.buttonIcon}
-                    >
-                        <FaUserFriends size={20} />
-                    </button>
-                </Tooltip>
+                <ButtonData
+                    tooltip='Add Friend'
+                    onClick={onComplete}
+                    icon={<FaPersonCirclePlus size={20} />}
+                />
+
+                <ButtonData
+                    tooltip='Your Friends'
+                    icon={<FaUserFriends size={20} />}
+                    onClick={onCompleteListFriends}
+                />
 
                 <button
                     className={styles.logoutButton}
@@ -115,6 +125,7 @@ export const HeaderNavBar: React.FC<HeaderNavBarProps> = ({ initialButton }) => 
                     Logout
                 </button>
             </div>
+
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={onClose}
@@ -148,8 +159,33 @@ export const HeaderNavBar: React.FC<HeaderNavBarProps> = ({ initialButton }) => 
                         onClick={() => sendInvite()}
                     />
                 </div>
-                <RowItems data={data} />
+                <RowInvites data={data} />
+            </Modal>
 
+            <Modal
+                isOpen={modalIsOpenListFriends}
+                onRequestClose={onCloseListFriends}
+                style={{
+                    overlay: {
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    },
+                    content: {
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        padding: '20px',
+                    }
+                }}
+            >
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
+                    <RowAllFriends data={friends} />
+                </div>
             </Modal>
         </nav>
     );

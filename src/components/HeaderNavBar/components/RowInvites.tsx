@@ -7,7 +7,6 @@ import { Notification } from '@/shared/utils/notification';
 
 type RowItemsProps = {
     data: Array<FriendList>;
-    onAcceptStatus?: (status: boolean) => void;
 }
 
 type Payload = {
@@ -15,7 +14,7 @@ type Payload = {
     id: string;
 }
 
-export const RowItems: React.FC<RowItemsProps> = ({ data }) => {
+export const RowInvites: React.FC<RowItemsProps> = ({ data }) => {
 
     const [items, setItems] = useState<Array<FriendList>>(data ?? []);
 
@@ -39,7 +38,7 @@ export const RowItems: React.FC<RowItemsProps> = ({ data }) => {
 
     return (
         <Container>
-            <h1 style={{ fontFamily: 'Kanit' }}>Friends</h1>
+            <h1 style={{ fontFamily: 'Kanit' }}>Friends Invite's</h1>
             {items.map((vl, idx) => (
               <HeaderComponent key={idx}>
                 {vl.userName}

@@ -126,6 +126,23 @@ export const acceptRequest = (data: string): Observable<ResponseData> => {
     });
 }
 
+export const getAllInvites = (): Observable<ResponseData> => {
+    return new Observable((subscriber) => {
+        const axiosInstance = createAxiosInstance();
+        axiosInstance.get('Friend/GetAllFriends', {
+            headers: {
+                'Content-Type': 'text/plain',
+                Authorization: Cookies.get(CookiesEnum.Auth)
+            }
+        })
+        .then((resp) => {
+            subscriber.next(resp.data as ResponseData);
+            subscriber.complete();
+        })
+        .catch((err) => subscriber.error(err));
+    });
+}
+
 export const getRequestInvite = () => {
     return new Observable<ResponseData>((subscriber) => {
         const axiosInstance = createAxiosInstance();

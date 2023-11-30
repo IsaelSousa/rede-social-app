@@ -15,7 +15,7 @@ enum AsideMenuEnum {
     Configuration = 'configuration'
 }
 
-type AsideMenuProps = 'homepage' | 'friends' | 'chat' | 'profile' | 'configuration';
+type AsideMenuProps = 'homepage' | 'chat' | 'profile' | 'configuration';
 
 export const AsideMenu = () => {
 
@@ -27,11 +27,6 @@ export const AsideMenu = () => {
                 }
                 break;
             case AsideMenuEnum.Chat:
-                break;
-            case AsideMenuEnum.Friends:
-                if (router.asPath != '/friends') {
-                    router.push('/friends');
-                }
                 break;
             case AsideMenuEnum.Profile:
                 if (router.asPath != '/profile') {
