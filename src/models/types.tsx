@@ -30,10 +30,15 @@ export type Post = {
 }
 
 export type FriendList = {
+    id: number;
     userName: string;
-    createdAt: string;
 }
 
 export enum CookiesEnum {
     Auth = 'Authorization',
+}
+
+export enum GetRequest {
+    Receiver = 'R',
+    Sender = 'S'
 }

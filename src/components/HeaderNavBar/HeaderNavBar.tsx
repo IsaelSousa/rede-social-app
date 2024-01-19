@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 import router from 'next/router';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { CookiesEnum, FriendList, ResponseData } from '@/models/types';
+import { CookiesEnum, FriendList, GetRequest, ResponseData } from '@/models/types';
 import Modal from 'react-modal';
 import { RowInvites } from './components/RowInvites';
 import { getAllInvites, getRequestInvite, inviteFriend } from '@/services/api';
@@ -59,6 +59,7 @@ export const HeaderNavBar: React.FC<HeaderNavBarProps> = ({ initialButton }) => 
             UserId: "",
             FriendUserName: input
         };
+
         const hash = Utils.EncryptData(data);
         inviteFriend(hash)
             .subscribe({
@@ -70,22 +71,23 @@ export const HeaderNavBar: React.FC<HeaderNavBarProps> = ({ initialButton }) => 
             });
     }
 
-    const handleGetRequest = () => {
-        getRequestInvite()
+    const handleGetRequest = (type: "Sender" | "Receiver") => {
+        const hash = Utils.EncryptData({ Type: type })
+        getRequestInvite(hash)
             .subscribe({
-                next: (value: ResponseData<Array<FriendList>>) => value.data ? setData(value.data) : []
+                next: (value: ResponseData<Array<FriendList>>) => value.data ? setData(value.data) : [],
             });
-    }
+    };
 
     const handleGetAllFriendsList = () => {
         getAllInvites()
         .subscribe({
             next: (value: ResponseData<Array<FriendList>>) => value.data ? setFriends(value.data) : []
         })
-    }
+    };
 
     useEffect(() => {
-        if (modalIsOpen) handleGetRequest();
+        if (modalIsOpen) handleGetRequest('Receiver');
         if (!modalIsOpen) setData([]);
     }, [modalIsOpen]);
 

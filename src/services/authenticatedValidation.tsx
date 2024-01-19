@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from 'react';
-import { validationToken } from './api';
+import React, { useEffect, useMemo, useState } from 'react';
+import { createAxiosInstance, validationToken } from './api';
 import { useRouter } from 'next/router';
 import { Unauthorization } from '@/pages/unauthorization';
 

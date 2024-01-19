@@ -54,9 +54,7 @@ export default function HomePage() {
           <PostSender />
 
           <div className={styles.postContent}>
-            {
-              loader ? <Loader active={loader} /> : post?.map((vl: Post, idx: number) => <PostComponent key={idx} post={vl} />)
-            }
+            {loader ? <Loader active={loader} /> : post?.map((vl: Post, idx: number) => <PostComponent key={idx} post={vl} />)}
           </div>
         </main>
         <div className={styles.asideRight}></div>

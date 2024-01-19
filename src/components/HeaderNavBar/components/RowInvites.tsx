@@ -10,28 +10,32 @@ type RowItemsProps = {
 }
 
 type Payload = {
-    userName: string;
-    id: string;
+    IdFriendRequest: number;
+    UserName: string;
+    Status: string;
 }
+
+type Status = "Pendent" | "Accepted" | "Refused" | "Removed";
 
 export const RowInvites: React.FC<RowItemsProps> = ({ data }) => {
 
     const [items, setItems] = useState<Array<FriendList>>(data ?? []);
 
-    const handleOnClick = (userName: string) => {
+    const handleOnClick = (friend: FriendList, status: Status) => {
         const payload: Payload = {
-            userName: userName,
-            id: ''
-        }
+            IdFriendRequest: friend.id,
+            UserName: friend.userName,
+            Status: status
+        };
 
         acceptRequest(Utils.EncryptData(payload))
         .subscribe({
             complete: () => {
-                setItems((prev) => prev.filter((user) => user.userName !== userName))
+                setItems((prev) => prev.filter((user) => user.userName !== friend.userName))
             },
             error: () => Notification.Error('Error to accept request.'),
             next: () => {}
-        })
+        });
     }
 
     useEffect(() => setItems(data), [data]);
@@ -42,7 +46,7 @@ export const RowInvites: React.FC<RowItemsProps> = ({ data }) => {
             {items.map((vl, idx) => (
               <HeaderComponent key={idx}>
                 {vl.userName}
-                <ButtonAccept onClick={() => handleOnClick(vl.userName)}>
+                <ButtonAccept onClick={() => handleOnClick(vl, 'Accepted')}>
                     Accept
                 </ButtonAccept>
               </HeaderComponent>  

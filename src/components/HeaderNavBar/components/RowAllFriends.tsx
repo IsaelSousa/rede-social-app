@@ -8,7 +8,6 @@ type RowAllFriendsProps = {
 
 
 export const RowAllFriends: React.FC<RowAllFriendsProps> = ({ data }) => {
-
     return (
         <Container>
             <h1 style={{ fontFamily: 'Kanit' }}>Friends List</h1>

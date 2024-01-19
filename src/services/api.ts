@@ -6,9 +6,9 @@ import Cookies from 'js-cookie';
 export const createAxiosInstance = () => {
     return axios.create({
         baseURL: "http://localhost:5281",
-        timeout: 3000
+        timeout: 30000
     });
-}
+};
 
 export const registerUser = (data: string) => {
     return new Observable((subscriber) => {
@@ -24,7 +24,7 @@ export const registerUser = (data: string) => {
             })
             .catch((err) => subscriber.error(err));
     });
-}
+};
 
 export const loginUser = (data: string) => {
     return new Observable((subscriber) => {
@@ -41,7 +41,7 @@ export const loginUser = (data: string) => {
             })
             .catch((err) => subscriber.error(err));
     });
-}
+};
 
 export const sendPost = (data: string) => {
     return new Observable((subscriber) => {
@@ -58,7 +58,7 @@ export const sendPost = (data: string) => {
             })
             .catch((err) => subscriber.error(err));
     });
-}
+};
 
 export const getPost = (data?: string) => {
     return new Observable((subscriber) => {
@@ -74,7 +74,7 @@ export const getPost = (data?: string) => {
             })
             .catch((err) => subscriber.error(err));
     });
-}
+};
 
 export const validationToken = () => {
     return new Observable((subscriber) => {
@@ -90,12 +90,12 @@ export const validationToken = () => {
             })
             .catch((err) => subscriber.error(err));
     });
-}
+};
 
 export const inviteFriend = (data: string): Observable<ResponseData> => {
     return new Observable((subscriber) => {
         const axiosInstance = createAxiosInstance();
-        axiosInstance.post('Friend/Invite', data, {
+        axiosInstance.post('Friend/SendInvite', data, {
             headers: {
                 'Content-Type': 'text/plain',
                 Authorization: Cookies.get(CookiesEnum.Auth)
@@ -107,24 +107,24 @@ export const inviteFriend = (data: string): Observable<ResponseData> => {
             })
             .catch((err) => subscriber.error(err));
     });
-}
+};
 
 export const acceptRequest = (data: string): Observable<ResponseData> => {
     return new Observable((subscriber) => {
         const axiosInstance = createAxiosInstance();
-        axiosInstance.post('Friend/AcceptInvite', data, {
+        axiosInstance.post('Friend/FriendRequestStatus', data, {
             headers: {
                 'Content-Type': 'text/plain',
                 Authorization: Cookies.get(CookiesEnum.Auth)
             }
         })
-        .then((resp) => {
-            subscriber.next(resp.data as ResponseData);
-            subscriber.complete();
-        })
-        .catch((err) => subscriber.error(err));
+            .then((resp) => {
+                subscriber.next(resp.data as ResponseData);
+                subscriber.complete();
+            })
+            .catch((err) => subscriber.error(err));
     });
-}
+};
 
 export const getAllInvites = (): Observable<ResponseData> => {
     return new Observable((subscriber) => {
@@ -135,18 +135,18 @@ export const getAllInvites = (): Observable<ResponseData> => {
                 Authorization: Cookies.get(CookiesEnum.Auth)
             }
         })
-        .then((resp) => {
-            subscriber.next(resp.data as ResponseData);
-            subscriber.complete();
-        })
-        .catch((err) => subscriber.error(err));
+            .then((resp) => {
+                subscriber.next(resp.data as ResponseData);
+                subscriber.complete();
+            })
+            .catch((err) => subscriber.error(err));
     });
-}
+};
 
-export const getRequestInvite = () => {
+export const getRequestInvite = (data: string) => {
     return new Observable<ResponseData>((subscriber) => {
         const axiosInstance = createAxiosInstance();
-        axiosInstance.get('Friend/PendentInvite', {
+        axiosInstance.post('Friend/PendentInvite', data, {
             headers: {
                 'Content-Type': 'text/plain',
                 Authorization: Cookies.get(CookiesEnum.Auth)
@@ -158,4 +158,4 @@ export const getRequestInvite = () => {
             })
             .catch((err) => subscriber.error(err));
     });
-}
+};
